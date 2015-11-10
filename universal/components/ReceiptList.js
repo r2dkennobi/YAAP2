@@ -13,8 +13,6 @@ export default class ReceiptList extends Component {
         const myReceipts = receipts.filter(receipt => receipt.userId === userId);
         const otherReceipts = receipts
 
-        console.log("List: " + myReceipts);
-
         let list, otherList;
         let editable = true;
         let totalSum = myReceipts.reduce((x, receipt) => receipt.amount + x, 0);
@@ -54,22 +52,12 @@ export default class ReceiptList extends Component {
         return (
             <section className='Yaap2-receiptList'>
                 <div className='Yaap2-receiptList-summary'>
-                    <span>My Id</span>
-                    <span className='val'>{this.props.userId}</span>
                     <span>Total Sum</span>
                     <span className='val'>$ {totalSum}</span>
                 </div>
                 <div className='Yaap2-receiptList-list'>
                     <ul>
                         {list}
-                    </ul>
-                </div>
-                <div className='Yaap2-receiptList-summary'>
-                    <span>Others</span>
-                </div>
-                <div className='Yaap2-receiptList-list'>
-                    <ul>
-                        {otherList}
                     </ul>
                 </div>
             </section>
