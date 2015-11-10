@@ -11,7 +11,7 @@ The program was inspired by the 3REE stack example found at [GordyD/3REE](https:
 - NodeJS
 - RethinkDB
 
-### TODO
+### TODO (in no specific order)
 
 - Re-add multiuser support
 - Add docker support
