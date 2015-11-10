@@ -18,7 +18,7 @@ export default class AsyncBar extends Component {
         );
     }
 
-    enderSpinner() {
+    renderSpinner() {
         return (
             <div className="Yaap2-async-spinner">
                 Loading…
