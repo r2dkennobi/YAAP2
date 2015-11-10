@@ -27,7 +27,7 @@ export function getReceipts() {
     .then(conn => {
         return r
         .table('receipts')
-        .orderBy('updated').run(conn)
+        .orderBy(r.desc('updated')).run(conn)
         .then(cursor => cursor.toArray());
     });
 }

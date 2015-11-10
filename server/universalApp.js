@@ -21,8 +21,6 @@ export function handleRender(req, res) {
             </Provider>
         );
 
-        console.log("Initial receipts: " + store.getState());
-
         // Send the rendered page back to the client
         res.render('index', { html: html, initialState: JSON.stringify(store.getState()) });
     });

@@ -40,7 +40,7 @@ export default class ReceiptItem extends Component {
         if (this.state.editing) {
             element = (
                 <ReceiptInput desc={receipt.desc}
-                              dataOfPurchace={receipt.dateOfPurchase}
+                              dateOfPurchase={receipt.dateOfPurchase}
                               category={receipt.category}
                               merchant={receipt.merchant}
                               receiptName={receipt.receiptName}
@@ -54,13 +54,13 @@ export default class ReceiptItem extends Component {
                 <buton className='destroy pure-button' onClick={ () => deleteReceipt(receipt) } /> : null;
             element = (
                 <div className='Yaap2-receiptItem'>
-                    <p className='title' onClick={::this.handleClick}>{receipt.desc}</p>
-                    <p className='dateOfPurchase'>{receipt.dateOfPurchase}</p>
-                    <p className='category'>{receipt.category}</p>
-                    <p className='merchant'>{receipt.merchant}</p>
-                    <p className='receiptName'>{receipt.receiptName}</p>
-                    <p className='outcome'>$ {receipt.amount}</p>
+                    <p className='desc' onClick={::this.handleClick}>Description: {receipt.desc}</p>
+                    <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
+                    <p className='category'>Category: {receipt.category}</p>
+                    <p className='merchant'>Merchant: {receipt.merchant}</p>
+                    <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
                     {del}
+                    <p className='amount'>$ {receipt.amount}</p>
                     <p className='created'>{moment(modified).fromNow()}</p>
                 </div>
             );
