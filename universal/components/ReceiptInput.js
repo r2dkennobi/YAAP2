@@ -102,17 +102,47 @@ export default class ReceiptInput extends Component {
         let saveText = (this.props.editing) ? 'Save': 'Add';
 
         return (
-            <form className='YAAP2-receiptInput pure-form'>
-                <fieldset>
-                    <input type='text' placeholder={this.props.descLabel} value={this.state.desc} onChange={::this.handleDescChange} />
-                    <input type='text' placeholder={this.props.dateLabel} value={this.state.dateOfPurchase} onChange={::this.handleDateChange} />
-                    <input type='text' placeholder={this.props.categoryLabel} value={this.state.category} onChange={::this.handleCategoryChange} />
-                    <input type='text' placeholder={this.props.merchantLabel} value={this.state.merchant} onChange={::this.handleMerchantChange} />
-                    <input type='text' placeholder={this.props.receiptLabel} value={this.state.receiptName} onChange={::this.handleReceiptNameChange} />
-                    <input type='text' placeholder={this.props.amountLabel} value={this.state.amount} onChange={::this.handleAmountChange} />
-                    <button type='submit' className='save pure-button' onClick={::this.handleSubmit}>{saveText}</button>
-                </fieldset>
-            </form>
+            <div className="row">
+                <form className='col s12'>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input type='text' id="descLabel" value={this.state.desc} onChange={::this.handleDescChange}/>
+                            <label className="active" htmlFor="descLabel">Description</label>
+                        </div>
+                        <div className="input-field col s6">
+                            <input type='text' id="dateLabel" value={this.state.dateOfPurchase} onChange={::this.handleDateChange}/>
+                            <label className="active" htmlFor="dateLabel">Date of Purchase</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input type='text' id="categoryLabel" value={this.state.category} onChange={::this.handleCategoryChange}/>
+                            <label className="active" htmlFor="categoryLabel">Category</label>
+                        </div>
+                        <div className="input-field col s6">
+                            <input type='text' id="merchantLabel" value={this.state.merchant} onChange={::this.handleMerchantChange}/>
+                            <label className="active" htmlFor="merchantLabel">Merchant</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input type='text' id="receiptLabel" value={this.state.receiptName} onChange={::this.handleReceiptNameChange}/>
+                            <label className="active" htmlFor="receiptLabel">Receipt Name</label>
+                        </div>
+                        <div className="input-field col s6">
+                            <input type='text' id="amountLabel" value={this.state.amount} onChange={::this.handleAmountChange}/>
+                            <label className="active" htmlFor="amountLabel">Amount</label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="file-field input-field col s6">
+                        </div>
+                        <div className="input-field col s6">
+                            <button type='submit' className='btn waves-effect waves-light' onClick={::this.handleSubmit}>{saveText}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
