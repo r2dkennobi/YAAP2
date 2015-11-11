@@ -26,11 +26,11 @@ export default class Yaap2App extends Component {
         };
 
         return (
-            <div className="Yaap2-Container">
+            <div>
                 <Header/>
                 <section className="Yaap2-addReceiptForm">
-                    <ReceiptInput onSubmit={this.props.addReceipt} 
-                                  userId={this.props.userId} 
+                    <ReceiptInput onSubmit={this.props.addReceipt}
+                                  userId={this.props.userId}
                                   descLabel='What did you buy?'
                                   dateLabel='When did you purchase?'
                                   categoryLabel='What category?'

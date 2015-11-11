@@ -22,7 +22,7 @@ export default class ReceiptInput extends Component {
             category: this.props.category || '',
             merchant: this.props.merchant || '',
             receiptName: this.props.receiptName || '',
-            amount: this.props.amount || 0.00 
+            amount: this.props.amount || 0.00
         };
     }
 
@@ -106,32 +106,45 @@ export default class ReceiptInput extends Component {
                 <form className='col s12'>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input type='text' id="descLabel" value={this.state.desc} onChange={::this.handleDescChange}/>
-                            <label htmlFor="descLabel">Description</label>
+                            <input type='text'
+                                   placeholder="Description"
+                                   value={this.state.desc}
+                                   onChange={::this.handleDescChange}/>
                         </div>
                         <div className="input-field col s6">
-                            <input type='text' id="dateLabel" value={this.state.dateOfPurchase} onChange={::this.handleDateChange}/>
-                            <label htmlFor="dateLabel">Date of Purchase</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s6">
-                            <input type='text' id="categoryLabel" value={this.state.category} onChange={::this.handleCategoryChange}/>
-                            <label htmlFor="categoryLabel">Category</label>
-                        </div>
-                        <div className="input-field col s6">
-                            <input type='text' id="merchantLabel" value={this.state.merchant} onChange={::this.handleMerchantChange}/>
-                            <label htmlFor="merchantLabel">Merchant</label>
+                            <input type='text'
+                                   placeholder="Date of Purchase"
+                                   value={this.state.dateOfPurchase}
+                                   onChange={::this.handleDateChange}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input type='text' id="receiptLabel" value={this.state.receiptName} onChange={::this.handleReceiptNameChange}/>
-                            <label htmlFor="receiptLabel">Receipt Name</label>
+                            <input type='text'
+                                   placeholder="Category"
+                                   value={this.state.category}
+                                   onChange={::this.handleCategoryChange}/>
                         </div>
                         <div className="input-field col s6">
-                            <input type='number' id="amountLabel" min="0" step="0.01" value={this.state.amount} onChange={::this.handleAmountChange}/>
-                            <label htmlFor="amountLabel">Amount</label>
+                            <input type='text'
+                                   placeholder="Merchant"
+                                   value={this.state.merchant}
+                                   onChange={::this.handleMerchantChange}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input type='text'
+                                   placeholder="Receipt Name"
+                                   value={this.state.receiptName}
+                                   onChange={::this.handleReceiptNameChange}/>
+                        </div>
+                        <div className="input-field col s6">
+                            <input type='number'
+                                   placeholder="Amount"
+                                   min="0" step="0.01"
+                                   value={this.state.amount}
+                                   onChange={::this.handleAmountChange}/>
                         </div>
                     </div>
                     <div className="row">
