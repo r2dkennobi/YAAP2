@@ -11,7 +11,6 @@ export default class ReceiptList extends Component {
     render() {
         const { receipts, userId, actions } = this.props;
         const myReceipts = receipts.filter(receipt => receipt.userId === userId);
-        const otherReceipts = receipts
 
         let list, otherList;
         let editable = true;
@@ -26,41 +25,30 @@ export default class ReceiptList extends Component {
                              {...actions} />
             );
         } else {
-            list =  <li>
-                        <div className='Yaap2-receiptItem empty'>
-                            <p>No receipts recorded!</p>
+            list =  <div className="col s12">
+                        <div className='card blue-grey darken-1'>
+                            <div className='card-content white-text'>
+                                <p>No receipts recorded!</p>
+                            </div>
                         </div>
-                    </li>;
-        }
-
-        if (otherReceipts.length > 0) {
-            otherList = otherReceipts.map((receipt, key) =>
-                <ReceiptItem key={key}
-                             id={receipt.id}
-                             editable={editable}
-                             receipt={receipt}
-                             {...actions} />
-            );
-        } else {
-            otherList =  <li>
-                        <div className='Yaap2-receiptItem empty'>
-                            <p>No other receipts recorded!</p>
-                        </div>
-                    </li>;
+                    </div>;
         }
 
         return (
-            <section className='Yaap2-receiptList'>
-                <div className='Yaap2-receiptList-summary'>
-                    <span>Total Sum</span>
-                    <span className='val'>$ {totalSum}</span>
+            <div className='receiptStatus'>
+                <div className='row'>
+                    <div className="col s12">
+                        <div className='card blue-grey darken-1'>
+                            <div className='card-content white-text'>
+                                <span>Total Sum: $ {totalSum}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className='Yaap2-receiptList-list'>
-                    <ul>
-                        {list}
-                    </ul>
+                <div className='row'>
+                    {list}
                 </div>
-            </section>
+            </div>
         );
     }
 }

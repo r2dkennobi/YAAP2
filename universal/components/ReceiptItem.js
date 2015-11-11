@@ -51,23 +51,29 @@ export default class ReceiptItem extends Component {
             );
         } else {
             let del = (this.props.editable) ?
-                <buton className='destroy pure-button' onClick={ () => deleteReceipt(receipt) } /> : null;
+                <buton className='btn' onClick={ () => deleteReceipt(receipt) } /> : null;
             element = (
-                <div className='Yaap2-receiptItem'>
-                    <p className='desc' onClick={::this.handleClick}>Description: {receipt.desc}</p>
-                    <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
-                    <p className='category'>Category: {receipt.category}</p>
-                    <p className='merchant'>Merchant: {receipt.merchant}</p>
-                    <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
-                    {del}
-                    <p className='amount'>$ {receipt.amount}</p>
-                    <p className='created'>{moment(modified).fromNow()}</p>
+                <div className='col s12'>
+                    <div className='card blue-grey darken-1'>
+                        <div className='card-content white-text'>
+                            <span className='card-title' onClick={::this.handleClick}>{receipt.desc}</span>
+                            <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
+                            <p className='category'>Category: {receipt.category}</p>
+                            <p className='merchant'>Merchant: {receipt.merchant}</p>
+                            <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
+                            <p className='amount'>$ {receipt.amount}</p>
+                            <p className='created'>{moment(modified).fromNow()}</p>
+                        </div>
+                        <div className='card-action'>
+                            {del}
+                        </div>
+                    </div>
                 </div>
             );
         }
 
         return (
-            <li>{element}</li>
+            <div>{element}</div>
         );
     }
 }

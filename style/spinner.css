@@ -1,4 +1,4 @@
-@-moz-keyframes Yaap2-async-spinner {
+@-moz-keyframes async-spinner {
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -8,7 +8,7 @@
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes Yaap2-async-spinner {
+@-webkit-keyframes async-spinner {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -18,7 +18,7 @@
     transform: rotate(360deg);
   }
 }
-@keyframes Yaap2-async-spinner {
+@keyframes async-spinner {
   0% {
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -33,10 +33,10 @@
   }
 }
 /* :not(:required) hides this rule from IE9 and below */
-.Yaap2-async-spinner:not(:required) {
-  -moz-animation: Yaap2-async-spinner 1250ms infinite linear;
-  -webkit-animation: Yaap2-async-spinner 1250ms infinite linear;
-  animation: Yaap2-async-spinner 1250ms infinite linear;
+.async-spinner:not(:required) {
+  -moz-animation: async-spinner 1250ms infinite linear;
+  -webkit-animation: async-spinner 1250ms infinite linear;
+  animation: async-spinner 1250ms infinite linear;
   border: 5px solid #1B98F8;
   border-right-color: transparent;
   border-radius: 12px;

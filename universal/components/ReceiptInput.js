@@ -22,7 +22,7 @@ export default class ReceiptInput extends Component {
             category: this.props.category || '',
             merchant: this.props.merchant || '',
             receiptName: this.props.receiptName || '',
-            amount: this.props.amount || 0
+            amount: this.props.amount || 0.00 
         };
     }
 
@@ -46,7 +46,7 @@ export default class ReceiptInput extends Component {
             errors = [...errors, 'Empty merchant!'];
         }
 
-        if (this.state.amount < 1) {
+        if (this.state.amount.length === 0) {
             errors = [...errors, 'Invalid price set'];
         }
 
@@ -68,7 +68,7 @@ export default class ReceiptInput extends Component {
                            dateOfPurchase: '',
                            category: '',
                            merchant: '',
-                           amount: 0,
+                           amount: 0.00,
                            receiptName: ''});
         }
     }
@@ -94,7 +94,7 @@ export default class ReceiptInput extends Component {
     }
 
     handleAmountChange(e) {
-        this.setState({ amount: parseFloat(e.target.value) });
+        this.setState({ amount: e.target.value })
     }
 
     render() {
@@ -107,35 +107,42 @@ export default class ReceiptInput extends Component {
                     <div className="row">
                         <div className="input-field col s6">
                             <input type='text' id="descLabel" value={this.state.desc} onChange={::this.handleDescChange}/>
-                            <label className="active" htmlFor="descLabel">Description</label>
+                            <label htmlFor="descLabel">Description</label>
                         </div>
                         <div className="input-field col s6">
                             <input type='text' id="dateLabel" value={this.state.dateOfPurchase} onChange={::this.handleDateChange}/>
-                            <label className="active" htmlFor="dateLabel">Date of Purchase</label>
+                            <label htmlFor="dateLabel">Date of Purchase</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
                             <input type='text' id="categoryLabel" value={this.state.category} onChange={::this.handleCategoryChange}/>
-                            <label className="active" htmlFor="categoryLabel">Category</label>
+                            <label htmlFor="categoryLabel">Category</label>
                         </div>
                         <div className="input-field col s6">
                             <input type='text' id="merchantLabel" value={this.state.merchant} onChange={::this.handleMerchantChange}/>
-                            <label className="active" htmlFor="merchantLabel">Merchant</label>
+                            <label htmlFor="merchantLabel">Merchant</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
                             <input type='text' id="receiptLabel" value={this.state.receiptName} onChange={::this.handleReceiptNameChange}/>
-                            <label className="active" htmlFor="receiptLabel">Receipt Name</label>
+                            <label htmlFor="receiptLabel">Receipt Name</label>
                         </div>
                         <div className="input-field col s6">
-                            <input type='text' id="amountLabel" value={this.state.amount} onChange={::this.handleAmountChange}/>
-                            <label className="active" htmlFor="amountLabel">Amount</label>
+                            <input type='number' id="amountLabel" min="0" step="0.01" value={this.state.amount} onChange={::this.handleAmountChange}/>
+                            <label htmlFor="amountLabel">Amount</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="file-field input-field col s6">
+                            <div className="btn">
+                                <span>Upload Receipt</span>
+                                <input type="file"/>
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text"/>
+                            </div>
                         </div>
                         <div className="input-field col s6">
                             <button type='submit' className='btn waves-effect waves-light' onClick={::this.handleSubmit}>{saveText}</button>

@@ -24,18 +24,18 @@ h1, h2, h3, p {
 }
 
 
-.Yaap2-addReceiptForm, .Yaap2-receiptList, .Yaap2-async {
+.Yaap2-addReceiptForm, .Yaap2-receiptList, .async {
   width: 600px;
   margin: 0 auto;
   padding-bottom: 20px;
 }
 
-.Yaap2-async {
+.async {
   text-align: center;
   min-height: 30px;
 }
 
-.Yaap2-async .Yaap2-async-error {
+.async .async-error {
   color: #EE5656;
   font-weight: bold;
 }
