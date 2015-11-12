@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/81b2911509144804a1b6ea5feea09c2c)](https://www.codacy.com/app/r2dkenny/YAAP2)
+
 # Yet Another Accounting Program 2
 
 Based on the original YAAP used by IEEE UCSD, YAAP2 aims to remove clutter and make it easier for users to navigate and identify their account balance.
