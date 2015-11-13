@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/R2DKenny/YAAP2.svg)](https://travis-ci.org/R2DKenny/YAAP2) [![Codacy Badge](https://api.codacy.com/project/badge/grade/81b2911509144804a1b6ea5feea09c2c)](https://www.codacy.com/app/r2dkenny/YAAP2)
+[![Build Status](https://travis-ci.org/R2DKenny/YAAP2.svg)](https://travis-ci.org/R2DKenny/YAAP2) [![Codacy Badge](https://api.codacy.com/project/badge/grade/81b2911509144804a1b6ea5feea09c2c)](https://www.codacy.com/app/r2dkenny/YAAP2) [![Stories in Ready](https://badge.waffle.io/R2DKenny/YAAP2.svg?label=ready&title=Ready)](http://waffle.io/R2DKenny/YAAP2)
 
 # Yet Another Accounting Program 2
 
