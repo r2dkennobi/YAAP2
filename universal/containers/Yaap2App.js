@@ -4,8 +4,6 @@ import { Connector } from 'react-redux';
 import ReceiptList from '../components/ReceiptList';
 import ReceiptInput from '../components/ReceiptInput';
 
-import * as Yaap2Actions from '../actions/Yaap2Actions';
-
 export default class Yaap2App extends Component {
     static propTypes = {
         addReceipt: React.PropTypes.func.isRequired,
@@ -13,7 +11,6 @@ export default class Yaap2App extends Component {
         deleteReceipt: React.PropTypes.func.isRequired,
         userId: React.PropTypes.string,
         receipts: React.PropTypes.array,
-        isWorking: React.PropTypes.bool,
         error: React.PropTypes.any,
     };
 
