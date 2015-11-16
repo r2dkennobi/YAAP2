@@ -13,9 +13,6 @@ The program was inspired by the 3REE stack example found at [GordyD/3REE](https:
 - NodeJS
 - RethinkDB
 
-### TODO (in no specific order)
+## Reference
 
-- Re-add multiuser support
-- Add docker support
-- Update CSS
-- Use react-router
+- [Isomorphic example](https://medium.com/@bananaoomarang/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4)
