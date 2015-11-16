@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
-import Header from '../components/Header';
 import ReceiptList from '../components/ReceiptList';
 import ReceiptInput from '../components/ReceiptInput';
 
@@ -26,7 +25,6 @@ export default class Yaap2App extends Component {
 
         return (
             <div className="Yaap2-Container">
-                <Header/>
                 <section className="Yaap2-addReceiptForm">
                     <ReceiptInput onSubmit={this.props.addReceipt} 
                                   userId={this.props.userId} 

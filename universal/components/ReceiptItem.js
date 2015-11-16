@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import moment from 'moment';
 import ReceiptInput from './ReceiptInput';
+import { Card, Col, Button } from 'react-materialize';
 
 export default class ReceiptItem extends Component {
     static propTypes = {
@@ -51,23 +52,24 @@ export default class ReceiptItem extends Component {
             );
         } else {
             let del = (this.props.editable) ?
-                <buton className='destroy pure-button' onClick={ () => deleteReceipt(receipt) } /> : null;
+                <Button onClick={ () => deleteReceipt(receipt) }></Button> : null;
             element = (
-                <div className='Yaap2-receiptItem'>
+                <Card s={6} m={12} className='blue-grey darken-1' textClassName='white-text' actions{[del]}>
                     <p className='desc' onClick={::this.handleClick}>Description: {receipt.desc}</p>
                     <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
                     <p className='category'>Category: {receipt.category}</p>
                     <p className='merchant'>Merchant: {receipt.merchant}</p>
                     <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
-                    {del}
                     <p className='amount'>$ {receipt.amount}</p>
                     <p className='created'>{moment(modified).fromNow()}</p>
-                </div>
+                </Card>
             );
         }
 
         return (
-            <li>{element}</li>
+            <Col m={6} s={12}>
+            {element}
+            </Col>
         );
     }
 }

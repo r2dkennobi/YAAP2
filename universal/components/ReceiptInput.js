@@ -1,16 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { Card, Row, Col, Button } from 'react-materialize';
 
 export default class ReceiptInput extends Component {
     static PropTypes = {
         onSubmit: PropTypes.func.isRequired,
         userId: PropTypes.string.isRequired,
-        editing: PropTypes.bool,
-        descLabel: PropTypes.string,
-        dateLabel: PropTypes.string,
-        categoryLabel: PropTypes.string,
-        merchantLabel: PropTypes.string,
-        receiptLabel: PropTypes.string,
-        amountLabel: PropTypes.string
+        editing: PropTypes.bool
     };
 
     constructor(props, context) {
@@ -22,7 +17,7 @@ export default class ReceiptInput extends Component {
             category: this.props.category || '',
             merchant: this.props.merchant || '',
             receiptName: this.props.receiptName || '',
-            amount: this.props.amount || 0
+            amount: this.props.amount || 0.00
         };
     }
 
@@ -46,7 +41,7 @@ export default class ReceiptInput extends Component {
             errors = [...errors, 'Empty merchant!'];
         }
 
-        if (this.state.amount < 1) {
+        if (this.state.amount.length === 0) {
             errors = [...errors, 'Invalid price set'];
         }
 
@@ -68,7 +63,7 @@ export default class ReceiptInput extends Component {
                            dateOfPurchase: '',
                            category: '',
                            merchant: '',
-                           amount: 0,
+                           amount: 0.00,
                            receiptName: ''});
         }
     }
@@ -94,7 +89,7 @@ export default class ReceiptInput extends Component {
     }
 
     handleAmountChange(e) {
-        this.setState({ amount: parseFloat(e.target.value) });
+        this.setState({ amount: e.target.value });
     }
 
     render() {
@@ -102,17 +97,27 @@ export default class ReceiptInput extends Component {
         let saveText = (this.props.editing) ? 'Save': 'Add';
 
         return (
-            <form className='YAAP2-receiptInput pure-form'>
-                <fieldset>
-                    <input type='text' placeholder={this.props.descLabel} value={this.state.desc} onChange={::this.handleDescChange} />
-                    <input type='text' placeholder={this.props.dateLabel} value={this.state.dateOfPurchase} onChange={::this.handleDateChange} />
-                    <input type='text' placeholder={this.props.categoryLabel} value={this.state.category} onChange={::this.handleCategoryChange} />
-                    <input type='text' placeholder={this.props.merchantLabel} value={this.state.merchant} onChange={::this.handleMerchantChange} />
-                    <input type='text' placeholder={this.props.receiptLabel} value={this.state.receiptName} onChange={::this.handleReceiptNameChange} />
-                    <input type='text' placeholder={this.props.amountLabel} value={this.state.amount} onChange={::this.handleAmountChange} />
-                    <button type='submit' className='save pure-button' onClick={::this.handleSubmit}>{saveText}</button>
-                </fieldset>
-            </form>
+            <Row>
+                <Input s={6} placeholder={this.props.descLabel} 
+                       value={this.state.desc} 
+                       onChange={::this.handleDescChange}></Input>
+                <Input s={6} placeholder={this.props.dateLabel} 
+                       value={this.state.dateOfPurchase} 
+                       onChange={::this.handleDateChange}></Input>
+                <Input s={6} placeholder={this.props.categoryLabel} 
+                       value={this.state.category} 
+                       onChange={::this.handleCategoryChange}></Input>
+                <Input s={6} placeholder={this.props.merchantLabel} 
+                       value={this.state.merchant} 
+                       onChange={::this.handleMerchantChange}></Input>
+                <Input s={6} placeholder={this.props.receiptLabel} 
+                       value={this.state.receiptName} 
+                       onChange={::this.handleReceiptNameChange}></Input>
+                <Input s={6} placeholder={this.props.amountLabel} 
+                       value={this.state.amount} 
+                       onChange={::this.handleAmountChange}></Input>
+                <Button type='submit' onClick={::this.handleSubmit}>{saveText}</Button>
+            </Row>
         );
     }
 }

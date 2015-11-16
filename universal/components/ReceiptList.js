@@ -11,9 +11,8 @@ export default class ReceiptList extends Component {
     render() {
         const { receipts, userId, actions } = this.props;
         const myReceipts = receipts.filter(receipt => receipt.userId === userId);
-        const otherReceipts = receipts
 
-        let list, otherList;
+        let list;
         let editable = true;
         let totalSum = myReceipts.reduce((x, receipt) => receipt.amount + x, 0);
 
@@ -26,41 +25,13 @@ export default class ReceiptList extends Component {
                              {...actions} />
             );
         } else {
-            list =  <li>
-                        <div className='Yaap2-receiptItem empty'>
-                            <p>No receipts recorded!</p>
-                        </div>
-                    </li>;
-        }
-
-        if (otherReceipts.length > 0) {
-            otherList = otherReceipts.map((receipt, key) =>
-                <ReceiptItem key={key}
-                             id={receipt.id}
-                             editable={editable}
-                             receipt={receipt}
-                             {...actions} />
-            );
-        } else {
-            otherList =  <li>
-                        <div className='Yaap2-receiptItem empty'>
-                            <p>No other receipts recorded!</p>
-                        </div>
-                    </li>;
+            list =  <Card s={6} m={12}>
+                        <p>No receipts recorded!</p>
+                    </Card>;
         }
 
         return (
-            <section className='Yaap2-receiptList'>
-                <div className='Yaap2-receiptList-summary'>
-                    <span>Total Sum</span>
-                    <span className='val'>$ {totalSum}</span>
-                </div>
-                <div className='Yaap2-receiptList-list'>
-                    <ul>
-                        {list}
-                    </ul>
-                </div>
-            </section>
+            <Row>{list}</Row>
         );
     }
 }
