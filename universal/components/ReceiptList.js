@@ -25,13 +25,25 @@ export default class ReceiptList extends Component {
                              {...actions} />
             );
         } else {
-            list =  <Card s={6} m={12}>
-                        <p>No receipts recorded!</p>
-                    </Card>;
+            list =  <li>
+                        <div className='Yaap2-receiptItem empty'>
+                            <p>No other receipts recorded!</p>
+                        </div>
+                    </li>;
         }
 
         return (
-            <Row>{list}</Row>
+            <section className='Yaap2-receiptList'>
+                <div className='Yaap2-receiptList-summary'>
+                    <span>Total Sum</span>
+                    <span className='val'>$ {totalSum}</span>
+                </div>
+                <div className='Yaap2-receiptList-list'>
+                    <ul>
+                        {list}
+                    </ul>
+                </div>
+            </section>
         );
     }
 }

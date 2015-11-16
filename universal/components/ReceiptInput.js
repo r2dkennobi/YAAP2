@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Card, Row, Col, Button } from 'react-materialize';
 
 export default class ReceiptInput extends Component {
     static PropTypes = {
@@ -97,27 +96,17 @@ export default class ReceiptInput extends Component {
         let saveText = (this.props.editing) ? 'Save': 'Add';
 
         return (
-            <Row>
-                <Input s={6} placeholder={this.props.descLabel} 
-                       value={this.state.desc} 
-                       onChange={::this.handleDescChange}></Input>
-                <Input s={6} placeholder={this.props.dateLabel} 
-                       value={this.state.dateOfPurchase} 
-                       onChange={::this.handleDateChange}></Input>
-                <Input s={6} placeholder={this.props.categoryLabel} 
-                       value={this.state.category} 
-                       onChange={::this.handleCategoryChange}></Input>
-                <Input s={6} placeholder={this.props.merchantLabel} 
-                       value={this.state.merchant} 
-                       onChange={::this.handleMerchantChange}></Input>
-                <Input s={6} placeholder={this.props.receiptLabel} 
-                       value={this.state.receiptName} 
-                       onChange={::this.handleReceiptNameChange}></Input>
-                <Input s={6} placeholder={this.props.amountLabel} 
-                       value={this.state.amount} 
-                       onChange={::this.handleAmountChange}></Input>
-                <Button type='submit' onClick={::this.handleSubmit}>{saveText}</Button>
-            </Row>
+            <form className='YAAP2-receiptInput pure-form'>
+                <fieldset>
+                    <input type='text' placeholder={this.props.descLabel} value={this.state.desc} onChange={::this.handleDescChange} />
+                    <input type='text' placeholder={this.props.dateLabel} value={this.state.dateOfPurchase} onChange={::this.handleDateChange} />
+                    <input type='text' placeholder={this.props.categoryLabel} value={this.state.category} onChange={::this.handleCategoryChange} />
+                    <input type='text' placeholder={this.props.merchantLabel} value={this.state.merchant} onChange={::this.handleMerchantChange} />
+                    <input type='text' placeholder={this.props.receiptLabel} value={this.state.receiptName} onChange={::this.handleReceiptNameChange} />
+                    <input type='text' placeholder={this.props.amountLabel} value={this.state.amount} onChange={::this.handleAmountChange} />
+                    <button type='submit' className='save pure-button' onClick={::this.handleSubmit}>{saveText}</button>
+                </fieldset>
+            </form>
         );
     }
 }
