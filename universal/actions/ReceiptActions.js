@@ -11,45 +11,6 @@ export function setUserId(userId) {
     }
 }
 
-export function loadReceipts(receipt) {
-    return dispatch => {
-        dispatch(loadReceiptsRequest(receipt));
-
-        return request
-            .get(receiptsUrl)
-            .send(receipt)
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                if (err) {
-                    dispatch(loadReceiptsFailure(err, receipt));
-                } else {
-                    dispatch(loadReceiptsSuccess(res.body));
-                }
-            });
-    }
-}
-
-export function loadReceiptsRequest(receipt) {
-    return {
-        type: types.LOAD_RECEIPTS_REQUEST,
-        receipt
-    };
-}
-
-export function loadReceiptsSuccess(receipts) {
-    return {
-        type: types.LOAD_RECEIPTS_SUCCESS,
-        receipts
-    };
-}
-
-export function loadReceiptsFailure(error, receipt) {
-    return {
-        type: types.LOAD_RECEIPTS_FAILURE,
-        error
-    };
-}
-
 export function addReceipt(receipt) {
     return dispatch => {
         dispatch(addReceiptRequest(receipt));
