@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
 import Header from '../components/Header';
 import ReceiptList from '../components/ReceiptList';
-import AsyncBar from '../components/AsyncBar';
 import ReceiptInput from '../components/ReceiptInput';
 
 import * as Yaap2Actions from '../actions/Yaap2Actions';
@@ -38,7 +37,6 @@ export default class Yaap2App extends Component {
                                   receiptLabel='Receipt name?'
                                   amountLabel='How much?'/>
                 </section>
-                <AsyncBar isWorking={this.props.isWorking} error={this.props.error} />
                 <ReceiptList receipts={this.props.receipts} userId={this.props.userId} actions={actions} />
             </div>
         );
