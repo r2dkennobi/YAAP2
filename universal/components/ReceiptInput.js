@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Categories from '../constants/ActionTypes';
 
 export default class ReceiptInput extends Component {
     static PropTypes = {

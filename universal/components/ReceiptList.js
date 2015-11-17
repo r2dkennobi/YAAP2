@@ -27,7 +27,7 @@ export default class ReceiptList extends Component {
         } else {
             list =  <li>
                         <div className='Yaap2-receiptItem empty'>
-                            <p>No other receipts recorded!</p>
+                            <p>No receipts recorded!</p>
                         </div>
                     </li>;
         }

@@ -35,3 +35,24 @@ export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 export const USER_LOGOUT_FAILURE = 'USER_LOGOUT_FAILURE';
 
 export const SET_USER_ID = 'SET_USER_ID';
+
+export const CATEGORIES = {
+    "All": "All",
+    "President": "President",
+    "VP_External": "VP External",
+    "VP_Internal": "VP Internal",
+    "Projects_Manager": "Projects Manager",
+    "Micromouse": "Micromouse",
+    "Grand_PrIEEE": "Grand PrIEEE",
+    "Technical": "Technical",
+    "Outreach": "Outreach",
+    "Publicity": "Publicity",
+    "Technical": "Technical",
+    "Professional": "Professional",
+    "Treasurer": "Treasurer",
+    "Webmaster": "Webmaster",
+    "External": "External",
+    "Other": "Other",
+    "Robomagellan": "Robomagellan",
+    "Quadcopter": "Quadcopter"
+};
