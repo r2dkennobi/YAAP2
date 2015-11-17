@@ -14,7 +14,7 @@ export default class ReceiptList extends Component {
 
         let list, otherList;
         let editable = true;
-        let totalSum = myReceipts.reduce((x, receipt) => receipt.amount + x, 0);
+        let totalSum = myReceipts.reduce((x, receipt) => parseFloat(receipt.amount) + x, 0.0);
 
         if (myReceipts.length > 0) {
             list = myReceipts.map((receipt, key) =>

@@ -51,7 +51,7 @@ export default class ReceiptItem extends Component {
             );
         } else {
             let del = (this.props.editable) ?
-                <buton className='btn' onClick={ () => deleteReceipt(receipt) } /> : null;
+                <button className='btn' onClick={ () => deleteReceipt(receipt) }>Delete</button> : null;
             element = (
                 <div className='col s12'>
                     <div className='card blue-grey darken-1'>

@@ -20,7 +20,7 @@ export default class ReceiptInput extends Component {
         this.state = {
             errors: [],
             desc: this.props.desc || '',
-            dateOfPurchase: this.props.dateOfPurchase || '',
+            dateOfPurchase: this.props.dateOfPurchase || null, 
             category: this.props.category || '',
             merchant: this.props.merchant || '',
             receiptName: this.props.receiptName || '',
@@ -36,7 +36,7 @@ export default class ReceiptInput extends Component {
             errors = ['Empty description!'];
         }
 
-        if (this.state.dateOfPurchase.length === 0) {
+        if (this.state.dateOfPurchase === null) {
             errors = [...errors, 'Empty date!'];
         }
 
@@ -67,7 +67,7 @@ export default class ReceiptInput extends Component {
                                  receiptName: this.state.receiptName,
                                  userId: this.props.userId});
             this.setState({desc: '',
-                           dateOfPurchase: '',
+                           dateOfPurchase: null,
                            category: '',
                            merchant: '',
                            amount: 0.00,
@@ -101,6 +101,20 @@ export default class ReceiptInput extends Component {
 
     componentDidMount() {
         $(ReactDOM.findDOMNode(this.refs.categoryEl)).material_select();
+        var comp = this;
+        var el = this.refs.datepickerEl;
+        $(ReactDOM.findDOMNode(el)).pickadate({
+            format: 'yyyy-mm-dd',
+            formatSubmit: 'yyyy-mm-dd',
+            selectMonths: true,
+            selectYears: 5,
+            closeOnSelect: true,
+            onSet: function (e) {
+                var val = this.get('select', 'yyyy-mm-dd');
+                comp.handleDateChange({ target: { value: val }});
+                this.close();
+            }
+        });
     }
 
     render() {
@@ -109,7 +123,7 @@ export default class ReceiptInput extends Component {
         let compId = uuid.v1();
         var ids = {
             "desc": `desc${compId}`,
-            "dop": `dop${compId}`,
+            "date": `date${compId}`,
             "merchant": `merchant${compId}`,
             "receiptname": `receiptname${compId}`,
             "amount": `amount${compId}`
@@ -127,18 +141,20 @@ export default class ReceiptInput extends Component {
                             <label className="active" htmlFor={ids["desc"]}>Description</label>
                         </div>
                         <div className="input-field col s6">
-                            <input type='text'
-                                   id={ids["dop"]}
+                            <input type='date'
+                                   ref='datepickerEl'
+                                   className='datepicker'
+                                   id={ids["date"]}
                                    value={this.state.dateOfPurchase}
                                    onChange={::this.handleDateChange}/>
-                            <label className="active" htmlFor={ids["dop"]}>Date of Purchace</label>
+                            <label className="active" htmlFor={ids["date"]}>Date of Purchace</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
                             <select ref="categoryEl"
                                     className="browser-default"
-                                    value={this.state.category} 
+                                    value={this.state.category}
                                     onChange={::this.handleCategoryChange}>
                                 <option value="" disabled>Choose category</option>
                                 <option value="Option 1">Option 1</option>
