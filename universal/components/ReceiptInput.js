@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+import uuid from 'node-uuid';
 
 export default class ReceiptInput extends Component {
     static PropTypes = {
@@ -97,9 +99,21 @@ export default class ReceiptInput extends Component {
         this.setState({ amount: e.target.value })
     }
 
+    componentDidMount() {
+        $(ReactDOM.findDOMNode(this.refs.categoryEl)).material_select();
+    }
+
     render() {
         let self = this;
         let saveText = (this.props.editing) ? 'Save': 'Add';
+        let compId = uuid.v1();
+        var ids = {
+            "desc": `desc${compId}`,
+            "dop": `dop${compId}`,
+            "merchant": `merchant${compId}`,
+            "receiptname": `receiptname${compId}`,
+            "amount": `amount${compId}`
+        }
 
         return (
             <div className="row">
@@ -107,44 +121,54 @@ export default class ReceiptInput extends Component {
                     <div className="row">
                         <div className="input-field col s6">
                             <input type='text'
-                                   placeholder="Description"
+                                   id={ids["desc"]}
                                    value={this.state.desc}
                                    onChange={::this.handleDescChange}/>
+                            <label className="active" htmlFor={ids["desc"]}>Description</label>
                         </div>
                         <div className="input-field col s6">
                             <input type='text'
-                                   placeholder="Date of Purchase"
+                                   id={ids["dop"]}
                                    value={this.state.dateOfPurchase}
                                    onChange={::this.handleDateChange}/>
+                            <label className="active" htmlFor={ids["dop"]}>Date of Purchace</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input type='text'
-                                   placeholder="Category"
-                                   value={this.state.category}
-                                   onChange={::this.handleCategoryChange}/>
+                            <select ref="categoryEl"
+                                    className="browser-default"
+                                    value={this.state.category} 
+                                    onChange={::this.handleCategoryChange}>
+                                <option value="" disabled>Choose category</option>
+                                <option value="Option 1">Option 1</option>
+                                <option value="Option 2">Option 2</option>
+                                <option value="Option 3">Option 3</option>
+                            </select>
                         </div>
                         <div className="input-field col s6">
                             <input type='text'
-                                   placeholder="Merchant"
+                                   id={ids["merchant"]}
                                    value={this.state.merchant}
                                    onChange={::this.handleMerchantChange}/>
+                            <label htmlFor={ids["merchant"]}>Merchant</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
                             <input type='text'
-                                   placeholder="Receipt Name"
+                                   id={ids["receiptname"]}
                                    value={this.state.receiptName}
                                    onChange={::this.handleReceiptNameChange}/>
+                            <label className="active" htmlFor={ids["receiptname"]}>Receipt Name</label>
                         </div>
                         <div className="input-field col s6">
                             <input type='number'
-                                   placeholder="Amount"
+                                   id={ids["amount"]}
                                    min="0" step="0.01"
                                    value={this.state.amount}
                                    onChange={::this.handleAmountChange}/>
+                            <label className="active" htmlFor={ids["amount"]}>Amount</label>
                         </div>
                     </div>
                     <div className="row">
