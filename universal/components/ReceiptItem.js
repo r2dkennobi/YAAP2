@@ -43,7 +43,7 @@ export default class ReceiptItem extends Component {
                               dateOfPurchase={receipt.dateOfPurchase}
                               category={receipt.category}
                               merchant={receipt.merchant}
-                              receiptName={receipt.receiptName}
+                              fileUrl={receipt.fileUrl}
                               amount={receipt.amount}
                               userId={receipt.userId}
                               editing={this.state.editing}
@@ -51,29 +51,28 @@ export default class ReceiptItem extends Component {
             );
         } else {
             let del = (this.props.editable) ?
-                <button className='btn' onClick={ () => deleteReceipt(receipt) }>Delete</button> : null;
+                <a href="#" onClick={ () => deleteReceipt(receipt) }>Delete</a> : null;
             element = (
-                <div className='col s12'>
-                    <div className='card blue-grey darken-1'>
-                        <div className='card-content white-text'>
-                            <span className='card-title' onClick={::this.handleClick}>{receipt.desc}</span>
-                            <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
-                            <p className='category'>Category: {receipt.category}</p>
-                            <p className='merchant'>Merchant: {receipt.merchant}</p>
-                            <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
-                            <p className='amount'>$ {receipt.amount}</p>
-                            <p className='created'>{moment(modified).fromNow()}</p>
-                        </div>
-                        <div className='card-action'>
-                            {del}
-                        </div>
+                <div className='card blue-grey darken-1'>
+                    <div className='card-content white-text'>
+                        <span className='card-title'>{receipt.desc}</span>
+                        <img className="materialboxed" width="100" height="auto" src={receipt.fileUrl}></img>
+                        <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
+                        <p className='category'>Category: {receipt.category}</p>
+                        <p className='merchant'>Merchant: {receipt.merchant}</p>
+                        <p className='amount'>$ {receipt.amount}</p>
+                        <p className='created'>{moment(modified).fromNow()}</p>
+                    </div>
+                    <div className='card-action'>
+                        <a href="#" onClick={::this.handleClick}>Edit</a>
+                        {del}
                     </div>
                 </div>
             );
         }
 
         return (
-            <div>{element}</div>
+            <div className='col s6'>{element}</div>
         );
     }
 }
