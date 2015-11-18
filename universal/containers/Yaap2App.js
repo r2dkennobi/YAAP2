@@ -30,13 +30,7 @@ export default class Yaap2App extends Component {
                 <Header/>
                 <section className="Yaap2-addReceiptForm">
                     <ReceiptInput onSubmit={this.props.addReceipt}
-                                  userId={this.props.userId}
-                                  descLabel='What did you buy?'
-                                  dateLabel='When did you purchase?'
-                                  categoryLabel='What category?'
-                                  merchantLabel='Which merchant?'
-                                  receiptLabel='Receipt name?'
-                                  amountLabel='How much?'/>
+                                  userId={this.props.userId} />
                 </section>
                 <AsyncBar isWorking={this.props.isWorking} error={this.props.error} />
                 <ReceiptList receipts={this.props.receipts} userId={this.props.userId} actions={actions} />
