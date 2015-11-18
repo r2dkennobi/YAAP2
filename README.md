@@ -19,3 +19,7 @@ The program was inspired by the 3REE stack example found at [GordyD/3REE](https:
 - Add docker support
 - Update CSS
 - Use react-router
+
+## References
+
+- [Component Lifecycle](http://javascript.tutorialhorizon.com/2014/09/13/execution-sequence-of-a-react-components-lifecycle-methods/)
