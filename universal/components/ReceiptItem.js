@@ -43,7 +43,7 @@ export default class ReceiptItem extends Component {
                               dateOfPurchase={receipt.dateOfPurchase}
                               category={receipt.category}
                               merchant={receipt.merchant}
-                              receiptName={receipt.receiptName}
+                              fileUrl={receipt.fileUrl}
                               amount={receipt.amount}
                               userId={receipt.userId}
                               editing={this.state.editing}
@@ -51,23 +51,32 @@ export default class ReceiptItem extends Component {
             );
         } else {
             let del = (this.props.editable) ?
-                <button className='destroy pure-button' onClick={ () => deleteReceipt(receipt) } /> : null;
+                <a href="#" onClick={ () => deleteReceipt(receipt) }>Delete</a> : null;
             element = (
-                <div className='Yaap2-receiptItem'>
-                    <p className='desc' onClick={::this.handleClick}>Description: {receipt.desc}</p>
-                    <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
-                    <p className='category'>Category: {receipt.category}</p>
-                    <p className='merchant'>Merchant: {receipt.merchant}</p>
-                    <p className='receiptName'>Name of Receipt: {receipt.receiptName}</p>
-                    {del}
-                    <p className='amount'>$ {receipt.amount}</p>
-                    <p className='created'>{moment(modified).fromNow()}</p>
+                <div className='card blue-grey darken-1'>
+                    <div className='card-image'>
+                        <a href={receipt.fileUrl} target="_blank">
+                            <img src={receipt.fileUrl}></img>
+                        </a>
+                        <span className='card-title'>{receipt.desc}</span>
+                    </div>
+                    <div className='card-content white-text'>
+                        <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
+                        <p className='category'>Category: {receipt.category}</p>
+                        <p className='merchant'>Merchant: {receipt.merchant}</p>
+                        <p className='amount'>$ {receipt.amount}</p>
+                        <p className='created'>Last Updated: {moment(modified).fromNow()}</p>
+                    </div>
+                    <div className='card-action'>
+                        <a href="#" onClick={::this.handleClick}>Edit</a>
+                        {del}
+                    </div>
                 </div>
             );
         }
 
         return (
-            <li>{element}</li>
+            <div className='col s6'>{element}</div>
         );
     }
 }

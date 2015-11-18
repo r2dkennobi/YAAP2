@@ -23,6 +23,23 @@ h1, h2, h3, p {
   text-align: center;
 }
 
+.Yaap2-addReceiptForm, .Yaap2-receiptList, .async {
+  width: 600px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+.async {
+  text-align: center;
+  min-height: 30px;
+}
+
+.async .async-error {
+  color: #EE5656;
+  font-weight: bold;
+}
+
+>>>>>>> master
 .Yaap2-addReceiptForm form{
   text-align: center;
 }

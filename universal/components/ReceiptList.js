@@ -14,7 +14,7 @@ export default class ReceiptList extends Component {
 
         let list;
         let editable = true;
-        let totalSum = myReceipts.reduce((x, receipt) => receipt.amount + x, 0);
+        let totalSum = myReceipts.reduce((x, receipt) => parseFloat(receipt.amount) + x, 0.0);
 
         if (myReceipts.length > 0) {
             list = myReceipts.map((receipt, key) =>
@@ -25,25 +25,30 @@ export default class ReceiptList extends Component {
                              {...actions} />
             );
         } else {
-            list =  <li>
-                        <div className='Yaap2-receiptItem empty'>
-                            <p>No receipts recorded!</p>
+            list =  <div className="col s12">
+                        <div className='card blue-grey darken-1'>
+                            <div className='card-content white-text'>
+                                <p>No receipts recorded!</p>
+                            </div>
                         </div>
-                    </li>;
+                    </div>;
         }
 
         return (
-            <section className='Yaap2-receiptList'>
-                <div className='Yaap2-receiptList-summary'>
-                    <span>Total Sum</span>
-                    <span className='val'>$ {totalSum}</span>
+            <div className='receiptStatus'>
+                <div className='row'>
+                    <div className="col s12">
+                        <div className='card blue-grey darken-1'>
+                            <div className='card-content white-text'>
+                                <span>Total Sum: $ {totalSum}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className='Yaap2-receiptList-list'>
-                    <ul>
-                        {list}
-                    </ul>
+                <div className='row'>
+                    {list}
                 </div>
-            </section>
+            </div>
         );
     }
 }

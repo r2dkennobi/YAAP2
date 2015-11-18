@@ -13,6 +13,7 @@ The program was inspired by the 3REE stack example found at [GordyD/3REE](https:
 - NodeJS
 - RethinkDB
 
-## Reference
+## References
 
 - [Isomorphic example](https://medium.com/@bananaoomarang/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4)
+- [Component Lifecycle](http://javascript.tutorialhorizon.com/2014/09/13/execution-sequence-of-a-react-components-lifecycle-methods/)
