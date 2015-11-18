@@ -54,14 +54,18 @@ export default class ReceiptItem extends Component {
                 <a href="#" onClick={ () => deleteReceipt(receipt) }>Delete</a> : null;
             element = (
                 <div className='card blue-grey darken-1'>
-                    <div className='card-content white-text'>
+                    <div className='card-image'>
+                        <a href={receipt.fileUrl} target="_blank">
+                            <img src={receipt.fileUrl}></img>
+                        </a>
                         <span className='card-title'>{receipt.desc}</span>
-                        <img className="materialboxed" width="100" height="auto" src={receipt.fileUrl}></img>
+                    </div>
+                    <div className='card-content white-text'>
                         <p className='dateOfPurchase'>Date of Purchase: {receipt.dateOfPurchase}</p>
                         <p className='category'>Category: {receipt.category}</p>
                         <p className='merchant'>Merchant: {receipt.merchant}</p>
                         <p className='amount'>$ {receipt.amount}</p>
-                        <p className='created'>{moment(modified).fromNow()}</p>
+                        <p className='created'>Last Updated: {moment(modified).fromNow()}</p>
                     </div>
                     <div className='card-action'>
                         <a href="#" onClick={::this.handleClick}>Edit</a>
