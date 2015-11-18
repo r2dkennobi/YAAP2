@@ -2,6 +2,8 @@
 
 # Yet Another Accounting Program 2
 
+![Pre-alpha Screenshot](./pre-alpha.png)
+
 Based on the original YAAP used by IEEE UCSD, YAAP2 aims to remove clutter and make it easier for users to navigate and identify their account balance.
 
 It can also be used as a simple generic accounting program to keep track of expenses. (I hope.)
