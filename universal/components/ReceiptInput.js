@@ -116,7 +116,6 @@ export default class ReceiptInput extends Component {
                 this.close();
             }
         });
->>>>>>> master
     }
 
     render() {

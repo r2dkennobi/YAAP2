@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
+import Header from '../components/Header';
 import ReceiptList from '../components/ReceiptList';
 import ReceiptInput from '../components/ReceiptInput';
 
