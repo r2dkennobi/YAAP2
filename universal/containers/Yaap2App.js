@@ -24,10 +24,12 @@ export default class Yaap2App extends Component {
         return (
             <div>
                 <Header/>
-                <section className="Yaap2-addReceiptForm">
-                    <ReceiptInput onSubmit={this.props.addReceipt}
-                                  userId={this.props.userId} />
-                </section>
+                <div className="row">
+                    <div className="col s6">
+                        <ReceiptInput onSubmit={this.props.addReceipt}
+                                      userId={this.props.userId} />
+                    </div>
+                </div>
                 <ReceiptList receipts={this.props.receipts} userId={this.props.userId} actions={actions} />
             </div>
         );
