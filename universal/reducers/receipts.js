@@ -12,7 +12,6 @@ import {
 
 const initialState = {
     userName: null,
-    userUuid: null,
     isApproved: false,
     receipts: [],
     userId: null,

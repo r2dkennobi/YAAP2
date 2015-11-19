@@ -32,36 +32,6 @@ export function getReceipts() {
     });
 }
 
-export function getReceiptsForUser(user) {
-    return connect()
-    .then(conn => {
-        return r
-        .table('receipts')
-        .getAll(user, {index: "name"}).run(conn)
-        .then(cursor => cursor.toArray());
-    });
-}
-
-export function getReceiptsForGroup(group) {
-    return connect()
-    .then(conn => {
-        return r
-        .table('receipts')
-        .getAll(group, {index: "group"}).run(conn)
-        .then(cursor => cursor.toArray());
-    });
-}
-
-export function getReceiptDetail(id) {
-    return connect()
-    .then(conn => {
-        return r
-        .table('receipts')
-        .get(id).run(conn)
-        .then(cursor => cursor.toArray());
-    });
-}
-
 export function addReceipt(receipt) {
     return connect()
     .then(conn => {
