@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import uuid from 'node-uuid';
+import { CATEGORIES } from '../constants/ActionTypes';
 
 export default class ReceiptInput extends Component {
     static PropTypes = {
@@ -128,13 +129,8 @@ export default class ReceiptInput extends Component {
             "merchant": `merchant${compId}`,
             "amount": `amount${compId}`
         }
-        var categories = [
-            "All", "President", "VP External", "VP Internal",
-            "Projects Manager", "Micromouse", "Grand PrIEEE", "Technical",
-            "Outreach", "Publicity", "Technical", "Professional", "Treasurer",
-            "Webmaster", "External", "Other", "Robomagellan", "Quadcopter"
-        ];
-        var makeOption = n => <option value={n}>{n}</option>;
+        let categories = Object.keys(CATEGORIES).sort();
+        var makeOption = (n, k) => <option value={n} key={k}>{n}</option>;
 
         return (
             <form className='col s12'>

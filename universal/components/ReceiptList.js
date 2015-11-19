@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import ReceiptItem from './ReceiptItem';
+import { CATEGORIES } from '../constants/ActionTypes';
 
 export default class ReceiptList extends Component {
     static propTypes = {
@@ -11,6 +12,7 @@ export default class ReceiptList extends Component {
     render() {
         const { receipts, userId, actions } = this.props;
         const myReceipts = receipts.filter(receipt => receipt.userId === userId);
+        let categories = Object.keys(CATEGORIES).sort();
 
         let list;
         let editable = true;
