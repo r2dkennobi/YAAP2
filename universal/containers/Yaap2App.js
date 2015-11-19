@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
 import Header from '../components/Header';
+import Yaap2User from '../components/Yaap2User';
 import ReceiptList from '../components/ReceiptList';
-import AsyncBar from '../components/AsyncBar';
 import ReceiptInput from '../components/ReceiptInput';
-
-import * as Yaap2Actions from '../actions/Yaap2Actions';
 
 export default class Yaap2App extends Component {
     static propTypes = {
@@ -15,7 +13,6 @@ export default class Yaap2App extends Component {
         deleteReceipt: React.PropTypes.func.isRequired,
         userId: React.PropTypes.string,
         receipts: React.PropTypes.array,
-        isWorking: React.PropTypes.bool,
         error: React.PropTypes.any,
     };
 
@@ -28,11 +25,15 @@ export default class Yaap2App extends Component {
         return (
             <div>
                 <Header/>
-                <section className="Yaap2-addReceiptForm">
-                    <ReceiptInput onSubmit={this.props.addReceipt}
-                                  userId={this.props.userId} />
-                </section>
-                <AsyncBar isWorking={this.props.isWorking} error={this.props.error} />
+                <div className="row">
+                    <div className="col s6">
+                        <Yaap2User />
+                    </div>
+                    <div className="col s6">
+                        <ReceiptInput onSubmit={this.props.addReceipt}
+                                      userId={this.props.userId} />
+                    </div>
+                </div>
                 <ReceiptList receipts={this.props.receipts} userId={this.props.userId} actions={actions} />
             </div>
         );

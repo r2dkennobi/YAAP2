@@ -11,7 +11,6 @@ import Yaap2App from './universal/reducers';
 import * as actions from './universal/actions/Yaap2Actions';
 
 import './style/main.css';
-import './style/spinner.css';
 
 let initialState = window.__INITIAL_STATE__;
 

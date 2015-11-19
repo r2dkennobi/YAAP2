@@ -22,9 +22,10 @@ app.set('view engine', 'jade');
  */
 app.use(require('serve-static')(path.join(__dirname, 'dist')));
 app.use(bodyParser.urlencoded({
+    limit: '25mb',
     extended: true
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '25mb'}));
 
 /*
  * Universal Application endpoint
