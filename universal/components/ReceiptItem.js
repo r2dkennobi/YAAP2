@@ -4,8 +4,8 @@ import ReceiptInput from './ReceiptInput';
 
 export default class ReceiptItem extends Component {
     static propTypes = {
-        id: PropTypes.any.isRequired,
         receipt: PropTypes.object.isRequired,
+        receiptId: PropTypes.any.isRequired,
         editable: PropTypes.bool,
         editReceipt: PropTypes.func,
         deleteReceipt: PropTypes.func
@@ -47,7 +47,7 @@ export default class ReceiptItem extends Component {
                               amount={receipt.amount}
                               userId={receipt.userId}
                               editing={this.state.editing}
-                              onSubmit={ (receipt) => this.handleSave(Object.assign({}, receipt, {id: id})) } />
+                              onSubmit={ (receipt) => this.handleSave(Object.assign({}, receipt, {id: receiptId})) } />
             );
         } else {
             let del = (this.props.editable) ?
@@ -76,7 +76,7 @@ export default class ReceiptItem extends Component {
         }
 
         return (
-            <div className='col s6'>{element}</div>
+            <div className='col s3'>{element}</div>
         );
     }
 }

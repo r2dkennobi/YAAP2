@@ -36,7 +36,7 @@ export default class ReceiptList extends Component {
         const myReceipts = receipts.filter(rcpt => rcpt.userId === userId);
         let categories = Object.keys(CATEGORIES).sort();
         var makeOption = (n, k) => <option value={n} key={k}>{n}</option>;
-        let filteredRcpt = receipts.filter(::this.receiptFilter);
+        let filteredRcpt = myReceipts.filter(::this.receiptFilter);
 
         let list;
         let editable = true;
@@ -46,7 +46,7 @@ export default class ReceiptList extends Component {
         if (filteredRcpt.length > 0) {
             list = filteredRcpt.map((receipt, key) =>
                 <ReceiptItem key={key}
-                             id={receipt.id}
+                             receiptId={receipt.id}
                              editable={editable}
                              receipt={receipt}
                              {...actions} />

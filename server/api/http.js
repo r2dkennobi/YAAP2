@@ -37,17 +37,17 @@ export function deleteReceipt(req, res) {
         });
 }
 
-export function getUser(req, res) {
-    userService.getUser()
+export function loginUser(req, res) {
+    userService.loginUser(req.body.userName, req.body.password)
         .then((user) => res.json(user))
         .catch(err => {
             res.status(400);
-            res.json({error: err});
+            res.json({error: err, user: req.body});
         });
 }
 
-export function addUser(req, res) {
-    userService.addUser(req.body)
+export function createUser(req, res) {
+    userService.createUser(req.body)
         .then((user) => res.json(user))
         .catch(err => {
             res.status(400);

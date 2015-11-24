@@ -5,13 +5,6 @@ const serverUrl = 'http://localhost:3000';
 const receiptsUrl = serverUrl + '/api/0/receipts';
 const usersUrl = serverUrl + '/api/0/users';
 
-export function setUserId(userId) {
-    return {
-        type: types.SET_USER_ID,
-        userId
-    }
-}
-
 export function addReceipt(receipt) {
     return dispatch => {
         dispatch(addReceiptRequest(receipt));
@@ -131,9 +124,9 @@ export function deleteReceiptFailure(error, receipt) {
     };
 }
 
-export function userCreate(user) {
+export function loginUser(user) {
     return dispatch => {
-        dispatch(userCreateRequest(user));
+        dispatch(loginUserRequest(user));
 
         return request
             .post(usersUrl)
@@ -141,38 +134,84 @@ export function userCreate(user) {
             .set('Accept', 'application/json')
             .end((err, res) => {
                 if (err) {
-                    dispatch(userCreateFailure(err, user));
+                    dispatch(loginUserFailure(err, user));
                 } else {
-                    dispatch(userCreateSuccess(res.body));
+                    dispatch(loginUserSuccess(res.body));
                 }
             });
     }
 }
 
-export function userCreateRequest(user) {
+export function loginUserRequest(user) {
     return {
-        type: types.USER_CREATE_REQUEST,
+        type: types.USER_LOGIN_REQUEST,
         user
     };
 }
 
-export function userCreateSuccess(users) {
+export function loginUserSuccess(user) {
     return {
-        type: types.USER_CREATE_SUCCESS,
-        users
+        type: types.USER_LOGIN_SUCCESS,
+        user
     };
 }
 
-export function userCreateFailure(error, user) {
+export function loginUserFailure(error, user) {
     return {
-        type: types.USER_CREATE_FAILURE,
+        type: types.USER_LOGIN_FAILURE,
         error
     };
 }
 
-export function userEdit(user) {
+export function logoutUser(user) {
+    return {
+        type: types.USER_LOGOUT_SUCCESS,
+        user
+    };
+}
+
+export function createUser(user) {
     return dispatch => {
-        dispatch(userEditRequest(user));
+        dispatch(createUserRequest(user));
+
+        return request
+            .post(usersUrl + "/create")
+            .send(user)
+            .set('Accept', 'application/json')
+            .end((err, res) => {
+                if (err) {
+                    dispatch(createUserFailure(err, user));
+                } else {
+                    dispatch(createUserSuccess(res.body));
+                }
+            });
+    }
+}
+
+export function createUserRequest(user) {
+    return {
+        type: types.CREATE_USER_REQUEST,
+        user
+    };
+}
+
+export function createUserSuccess(users) {
+    return {
+        type: types.CREATE_USER_SUCCESS,
+        users
+    };
+}
+
+export function createUserFailure(error, user) {
+    return {
+        type: types.CREATE_USER_FAILURE,
+        error
+    };
+}
+
+export function editUser(user) {
+    return dispatch => {
+        dispatch(editUserRequest(user));
 
         return request
             .post(usersUrl + '/' + user.id)
@@ -180,148 +219,69 @@ export function userEdit(user) {
             .set('Accept', 'application/json')
             .end((err, res) => {
                 if (err) {
-                    dispatch(userEditFailure(err, user));
+                    dispatch(editUserFailure(err, user));
                 } else {
-                    dispatch(userEditSuccess(res.body));
+                    dispatch(editUserSuccess(res.body));
                 }
             });
     }
 }
 
-export function userEditRequest(user) {
+export function editUserRequest(user) {
     return {
-        type: types.USER_EDIT_REQUEST,
+        type: types.EDIT_USER_REQUEST,
         user
     };
 }
 
-export function userEditSuccess(users) {
+export function editUserSuccess(users) {
     return {
-        type: types.USER_EDIT_SUCCESS,
+        type: types.EDIT_USER_SUCCESS,
         users
     };
 }
 
-export function userEditFailure(error, user) {
+export function editUserFailure(error, user) {
     return {
-        type: types.USER_EDIT_FAILURE,
+        type: types.EDIT_USER_FAILURE,
         error
     };
 }
 
-export function userDelete(user) {
+export function deleteUser(user) {
     return dispatch => {
-        dispatch(userDeleteRequest(user));
+        dispatch(deleteUserRequest(user));
 
         return request
             .del(usersUrl + '/' + user.id)
             .set('Accept', 'application/json')
             .end((err, res) => {
                 if (err) {
-                    dispatch(userDeleteFailure(err, user));
+                    dispatch(deleteUserFailure(err, user));
                 } else {
-                    dispatch(userDeleteSuccess(res.body));
+                    dispatch(deleteUserSuccess(res.body));
                 }
             });
     }
 }
 
-export function userDeleteRequest(user) {
+export function deleteUserRequest(user) {
     return {
-        type: types.USER_DELETE_REQUEST,
+        type: types.DELETE_USER_REQUEST,
         user
     };
 }
 
-export function userDeleteSuccess(user) {
+export function deleteUserSuccess(user) {
     return {
-        type: types.USER_DELETE_SUCCESS,
+        type: types.DELETE_USER_SUCCESS,
         users
     };
 }
 
-export function userDeleteFailure(error, user) {
+export function deleteUserFailure(error, user) {
     return {
-        type: types.USER_DELETE_FAILURE,
+        type: types.DELETE_USER_FAILURE,
         error
-    };
-}
-
-export function userLogin(user) {
-    return dispatch => {
-        dispatch(userLoginRequest(user));
-
-        return request
-            .post(usersUrl)
-            .send(user)
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                if (err) {
-                    dispatch(userLoginFailure(err, user));
-                } else {
-                    dispatch(userLoginSuccess(res.body));
-                }
-            });
-    }
-}
-
-export function userLoginRequest(user) {
-    return {
-        type: types.USER_LOGIN_REQUEST,
-        user
-    };
-}
-
-export function userLoginSuccess(user) {
-    return {
-        type: types.USER_LOGIN_SUCCESS,
-        user
-    };
-}
-
-export function userLoginFailure(error, user) {
-    return {
-        type: types.USER_LOGIN_FAILURE,
-        error
-    };
-}
-
-export function userLogout(user) {
-    return dispatch => {
-        dispatch(userLogoutRequest(user));
-
-        return request
-            .post(usersUrl)
-            .send(user)
-            .set('Accept', 'application/json')
-            .end((err, res) => {
-                if (err) {
-                    dispatch(userLogoutFailure(err, user));
-                } else {
-                    dispatch(userLogoutSuccess(res.body));
-                }
-            });
-    }
-}
-
-export function userLogoutRequest(user) {
-    return {
-        type: types.USER_LOGOUT_REQUEST,
-        user
-    };
-}
-
-export function userLogoutSuccess(user) {
-    return {
-        type: types.USER_LOGOUT_SUCCESS,
-        user
-    };
-}
-
-export function userLogoutFailure(error, user) {
-    return {
-        type: types.USER_LOGOUT_FAILURE,
-        error,
-        user
     };
 }

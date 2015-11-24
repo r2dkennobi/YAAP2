@@ -39,6 +39,10 @@ app.get('/api/0/receipts', api.getReceipts);
 app.post('/api/0/receipts', api.addReceipt);
 app.post('/api/0/receipts/:id', api.editReceipt);
 app.delete('/api/0/receipts/:id', api.deleteReceipt);
+app.post('/api/0/users', api.loginUser);
+app.post('/api/0/users/create', api.createUser);
+app.post('/api/0/users/:id', api.editUser);
+app.delete('/api/0/users/:id', api.deleteUser);
 
 receiptService.liveUpdates(io);
 

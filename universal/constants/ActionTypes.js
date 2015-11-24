@@ -14,27 +14,23 @@ export const DELETE_RECEIPT_REQUEST = 'DELETE_RECEIPT_REQUEST';
 export const DELETE_RECEIPT_SUCCESS = 'DELETE_RECEIPT_SUCCESS';
 export const DELETE_RECEIPT_FAILURE = 'DELETE_RECEIPT_FAILURE';
 
-export const USER_CREATE_REQUEST = 'USER_CREATE_REQUEST';
-export const USER_CREATE_SUCCESS = 'USER_CREATE_SUCCESS';
-export const USER_CREATE_FAILURE = 'USER_CREATE_FAILURE';
-
-export const USER_EDIT_REQUEST = 'USER_EDIT_REQUEST';
-export const USER_EDIT_SUCCESS = 'USER_EDIT_SUCCESS';
-export const USER_EDIT_FAILURE = 'USER_EDIT_FAILURE';
-
-export const USER_DELETE_REQUEST = 'USER_DELETE_REQUEST';
-export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
-export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE';
-
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
 
-export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
-export const USER_LOGOUT_FAILURE = 'USER_LOGOUT_FAILURE';
 
-export const SET_USER_ID = 'SET_USER_ID';
+export const CREATE_USER_REQUEST = 'CREATE_USER_REQUEST';
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+export const CREATE_USER_FAILURE = 'CREATE_USER_FAILURE';
+
+export const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
+
+export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
+export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
+export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 
 export const CATEGORIES = {
     "All": "All",
@@ -47,7 +43,6 @@ export const CATEGORIES = {
     "Technical": "Technical",
     "Outreach": "Outreach",
     "Publicity": "Publicity",
-    "Technical": "Technical",
     "Professional": "Professional",
     "Treasurer": "Treasurer",
     "Webmaster": "Webmaster",

@@ -7,9 +7,9 @@ import * as Yaap2Actions from '../actions/Yaap2Actions';
 function mapStateToProps(state) {
     return {
         userName: state.userName,
-        isApproved: state.isApproved,
-        receipts: state.receipts,
         userId: state.userId,
+        userEmail: state.userEmail,
+        receipts: state.receipts,
         error: state.error
     };
 }
