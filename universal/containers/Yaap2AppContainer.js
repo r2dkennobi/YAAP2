@@ -9,6 +9,7 @@ function mapStateToProps(state) {
         userName: state.userName,
         userId: state.userId,
         userEmail: state.userEmail,
+        userRealName: state.userRealName,
         receipts: state.receipts,
         error: state.error
     };

@@ -24,27 +24,27 @@ export default class ReceiptInput extends Component {
     }
 
     handleSubmit(e) {
-        let errors;
+        let errors = [];
         e.preventDefault();
 
         if (this.state.desc.length === 0) {
-            errors = ['Empty description!'];
+            errors = [...errors, 'Empty description! '];
         }
 
         if (this.state.dateOfPurchase === null) {
-            errors = [...errors, 'Empty date!'];
+            errors = [...errors, 'Empty date! '];
         }
 
         if (this.state.category.length === 0) {
-            errors = [...errors, 'Empty category!'];
+            errors = [...errors, 'Empty category! '];
         }
 
         if (this.state.merchant.length === 0) {
-            errors = [...errors, 'Empty merchant!'];
+            errors = [...errors, 'Empty merchant! '];
         }
 
         if (this.state.amount.length === 0) {
-            errors = [...errors, 'Invalid price set'];
+            errors = [...errors, 'Invalid price set '];
         }
 
         if (this.state.fileUrl === null) {
@@ -198,6 +198,13 @@ export default class ReceiptInput extends Component {
                         <button type='submit'
                                 className='btn waves-effect waves-light'
                                 onClick={::this.handleSubmit}>{saveText}</button>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col s12">
+                        <div className="error-msg">
+                            {this.state.errors}
+                        </div>
                     </div>
                 </div>
             </form>

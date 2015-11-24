@@ -11,6 +11,7 @@ import {
 
 const initialState = {
     userName: '',
+    userRealName: '',
     userId: '',
     userEmail: '',
     receipts: [],
@@ -51,6 +52,7 @@ export default function receipts(state = initialState, action) {
         case USER_LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 userName: action.user[0].userName,
+                userRealName: action.user[0].userRealName,
                 userId: action.user[0].userId,
                 userEmail: action.user[0].userEmail,
                 error: null,
@@ -58,27 +60,31 @@ export default function receipts(state = initialState, action) {
         case USER_LOGOUT_SUCCESS:
             return Object.assign({}, state, {
                 userName: '',
+                userRealName: '',
                 userId: '',
                 userEmail: '',
                 error: null,
             });
         case CREATE_USER_SUCCESS:
             return Object.assign({}, state, {
-                userName: state.userName,
-                userId: state.userId,
-                userEmail: state.userEmail,
+                userName: action.user[0].userName,
+                userRealName: action.user[0].userRealName,
+                userId: action.user[0].userId,
+                userEmail: action.user[0].userEmail,
                 error: null,
             });
         case EDIT_USER_SUCCESS:
             return Object.assign({}, state, {
-                userName: action.user.userName,
-                userId: action.user.userId,
-                userEmail: action.user.userEmail,
+                userName: action.user[0].userName,
+                userRealName: action.user[0].userRealName,
+                userId: action.user[0].userId,
+                userEmail: action.user[0].userEmail,
                 error: null,
             });
         case DELETE_USER_SUCCESS:
             return Object.assign({}, state, {
                 userName: '',
+                userRealName: '',
                 userId: '',
                 userEmail: '',
                 error: null,

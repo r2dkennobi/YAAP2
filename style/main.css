@@ -20,15 +20,7 @@ h1, h2, h3, p {
   text-align: center;
 }
 
-.async {
-  width: 600px;
-  margin: 0 auto;
-  padding-bottom: 20px;
-  text-align: center;
-  min-height: 30px;
-}
-
-.async .async-error {
+.error-msg {
   color: #EE5656;
   font-weight: bold;
 }

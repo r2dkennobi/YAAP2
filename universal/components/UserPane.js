@@ -19,6 +19,7 @@ export default class UserPane extends Component {
         this.state = {
             editing: false,
             userName: this.props.userName,
+            userRealName: this.props.userRealName,
             userId: this.props.userId,
             userEmail: this.props.userEmail,
             password: '',
@@ -28,6 +29,10 @@ export default class UserPane extends Component {
 
     handleUsernameChange(e) {
         this.setState({ userName: e.target.value });
+    }
+
+    handleUserRealNameChange(e) {
+        this.setState({ userRealName: e.target.value });
     }
 
     handlePassChange(e) {
@@ -61,10 +66,12 @@ export default class UserPane extends Component {
 
         if (this.state.editing) {
             this.props.editUser({ userName: this.state.userName,
+                                  userRealName: this.state.userRealName,
                                   userId: this.state.userId,
                                   userEmail: this.state.userEmail });
         } else if (this.state.userCreateFlag) {
             this.props.createUser({ userName: this.state.userName,
+                                    userRealName: this.state.userRealName,
                                     userId: this.state.userId,
                                     userEmail: this.state.userEmail,
                                     password: this.state.password });
@@ -75,6 +82,7 @@ export default class UserPane extends Component {
         this.setState({
             editing: false,
             userName: this.props.userName,
+            userRealName: this.props.userRealName,
             userId: this.props.userId,
             userEmail: this.props.userEmail,
             password: '',
@@ -84,7 +92,7 @@ export default class UserPane extends Component {
 
     render() {
         const { loginUser, logoutUser, editUser, deleteUser, createUser,
-                userName, userId, userEmail } = this.props;
+                userName, userRealName, userId, userEmail } = this.props;
 
         let element;
 
@@ -96,6 +104,14 @@ export default class UserPane extends Component {
                                       onChange={::this.handleEmailChange}/>
                                <label className="active" htmlFor="emailEl">Email</label>
                            </div> : null;
+        let userRealNameEl = (this.state.userCreateFlag) ?
+                             <div className="input-field col s12">
+                                 <input type='text'
+                                        id="userRealNameEl"
+                                        value={this.state.userRealName}
+                                        onChange={::this.handleUserRealNameChange}/>
+                                 <label className="active" htmlFor="userRealNameEl">Real Name</label>
+                             </div> : null;
         let sliderEl = (this.state.editing) ? null :
                        <div className="input-field col s6">
                            <div className="switch">
@@ -125,6 +141,7 @@ export default class UserPane extends Component {
                                onChange={::this.handlePassChange}/>
                         <label className="active" htmlFor="passEl">Password</label>
                     </div>
+                    {userRealNameEl}
                     {userEmailEl}
                     <div className="row">
                         {sliderEl}
@@ -140,8 +157,9 @@ export default class UserPane extends Component {
             element = (
                 <div className='card blue-grey'>
                     <div className="card-content">
-                        <span className="card-title">{userName}</span>
-                        <p className="userEmail">{userEmail}</p>
+                        <span className="card-title">User Name: {userName}</span>
+                        <p className="userRealName">Real Name: {userRealName}</p>
+                        <p className="userEmail">E-mail: {userEmail}</p>
                     </div>
                     <div className="card-action">
                         <a href="#" onClick={::this.handleEdit}>Edit</a>

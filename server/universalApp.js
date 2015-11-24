@@ -15,6 +15,7 @@ export function handleRender(req, res) {
         const store = createStore(rootReducer, {receipts: initialReceipts,
                                                 userId: '',
                                                 userName: '',
+                                                userRealName: '',
                                                 userEmail: ''});
 
         // Render the component to a strng

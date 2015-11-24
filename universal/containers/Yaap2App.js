@@ -17,6 +17,7 @@ export default class Yaap2App extends Component {
         editUser: React.PropTypes.func.isRequired,
         deleteUser: React.PropTypes.func.isRequired,
         userName: React.PropTypes.string,
+        userRealName: React.PropTypes.string,
         userId: React.PropTypes.string,
         userEmail: React.PropTypes.string,
         receipts: React.PropTypes.array,
@@ -54,6 +55,7 @@ export default class Yaap2App extends Component {
                 <div className="row">
                     <div className="col s6">
                         <UserPane userName={this.props.userName}
+                                  userRealName={this.props.userRealName}
                                   userId={this.props.userId}
                                   userEmail={this.props.userEmail}
                                   {...userActions} />
