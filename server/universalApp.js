@@ -12,7 +12,11 @@ export function handleRender(req, res) {
     receiptService.getReceipts()
     .then(initialReceipts => {
         // Create a new Redux store instance
-        const store = createStore(rootReducer, {receipts: initialReceipts, userId: 'baseUser'});
+        const store = createStore(rootReducer, {receipts: initialReceipts,
+                                                userId: '',
+                                                userName: '',
+                                                userRealName: '',
+                                                userEmail: ''});
 
         // Render the component to a strng
         const html = ReactDOMServer.renderToString(

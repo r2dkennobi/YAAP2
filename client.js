@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { getOrSetUserId } from './client/UserId';
 import { setupRealtime } from './client/Realtime';
 import { createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -34,5 +33,3 @@ ReactDOM.render(
 );
 
 setupRealtime(store, actions);
-
-store.dispatch(actions.setUserId(getOrSetUserId()));

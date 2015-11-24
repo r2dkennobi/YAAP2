@@ -1,4 +1,5 @@
 import * as receiptService from './service/receipts';
+import * as userService from './service/users';
 
 export function getReceipts(req, res) {
     receiptService.getReceipts()
@@ -33,5 +34,41 @@ export function deleteReceipt(req, res) {
         .catch(err => {
             res.status(400);
             res.json({error: err, receipt: req.body});
+        });
+}
+
+export function loginUser(req, res) {
+    userService.loginUser(req.body.userName, req.body.password)
+        .then((user) => res.json(user))
+        .catch(err => {
+            res.status(400);
+            res.json({error: err, user: req.body});
+        });
+}
+
+export function createUser(req, res) {
+    userService.createUser(req.body)
+        .then((user) => res.json(user))
+        .catch(err => {
+            res.status(400);
+            res.json({error: err, user: req.body});
+        });
+}
+
+export function editUser(req, res) {
+    userService.editUser(req.params.id, req.body)
+        .then((user) => res.json(user))
+        .catch(err => {
+            res.status(400);
+            res.json({error: err, user: req.body});
+        });
+}
+
+export function deleteUser(req, res) {
+    userService.deleteUser(req.params.id)
+        .then((user) => res.json(user))
+        .catch(err => {
+            res.status(400);
+            res.json({error: err, user: req.body});
         });
 }
