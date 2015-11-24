@@ -9,26 +9,30 @@ function connect() {
 }
 
 export function loginUser(userName, password) {
+    var hash = crypto.createHmac('sha512', password);
+    hash.setEncoding('base64');
+    hash.write(userName);
+    hash.end();
+    var hashed = hash.read();
     return connect()
     .then(conn => {
-        //var hash = crypto.createHmac('sha512', password);
-        //hash.update(userName);
-        //var hashed = hash.digest('base64');
         return r
         .table('users')
-        .filter(r.row("userName").eq(userName).and(r.row("password").eq(password)))
+        .filter(r.row("userName").eq(userName).and(r.row("password").eq(hashed)))
         .run(conn)
         .then(cursor => cursor.toArray());
     });
 }
 
 export function createUser(user) {
+    var hash = crypto.createHmac('sha512', user.password);
+    hash.setEncoding('base64');
+    hash.write(user.userName);
+    hash.end();
+    user.password = hash.read();
     return connect()
     .then(conn => {
         user.created = new Date();
-        //var hash = crypto.createHmac('sha512', user.password);
-        //hash.update(user.userName);
-        //user.password = hash.digest('base64');
         user.userId = uuid.v1();
         return r
         .table('users')
