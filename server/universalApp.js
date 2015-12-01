@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import * as receiptService from './api/service/receipts';
+import * as userService from './api/service/users';
 
 import rootReducer from '../universal/reducers';
 import Yaap2AppContainer from '../universal/containers/Yaap2AppContainer';
@@ -13,10 +14,12 @@ export function handleRender(req, res) {
     .then(initialReceipts => {
         // Create a new Redux store instance
         const store = createStore(rootReducer, {receipts: initialReceipts,
+                                                users: [],
                                                 userId: '',
                                                 userName: '',
                                                 userRealName: '',
-                                                userEmail: ''});
+                                                userEmail: '',
+                                                userRole: ''});
 
         // Render the component to a strng
         const html = ReactDOMServer.renderToString(

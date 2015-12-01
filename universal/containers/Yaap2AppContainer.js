@@ -10,6 +10,7 @@ function mapStateToProps(state) {
         userId: state.userId,
         userEmail: state.userEmail,
         userRealName: state.userRealName,
+        userRole: state.userRole,
         receipts: state.receipts,
         error: state.error
     };

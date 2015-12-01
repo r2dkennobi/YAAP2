@@ -14,6 +14,7 @@ const initialState = {
     userRealName: '',
     userId: '',
     userEmail: '',
+    userRole: '',
     receipts: [],
     error: null
 };
@@ -55,6 +56,7 @@ export default function receipts(state = initialState, action) {
                 userRealName: action.user[0].userRealName,
                 userId: action.user[0].userId,
                 userEmail: action.user[0].userEmail,
+                userRole: action.user[0].userRole,
                 error: null,
             });
         case USER_LOGOUT_SUCCESS:
@@ -63,6 +65,7 @@ export default function receipts(state = initialState, action) {
                 userRealName: '',
                 userId: '',
                 userEmail: '',
+                userRole: '',
                 error: null,
             });
         case CREATE_USER_SUCCESS:
@@ -71,6 +74,7 @@ export default function receipts(state = initialState, action) {
                 userRealName: action.user[0].userRealName,
                 userId: action.user[0].userId,
                 userEmail: action.user[0].userEmail,
+                userRole: action.user[0].userRole,
                 error: null,
             });
         case EDIT_USER_SUCCESS:
@@ -79,6 +83,7 @@ export default function receipts(state = initialState, action) {
                 userRealName: action.user[0].userRealName,
                 userId: action.user[0].userId,
                 userEmail: action.user[0].userEmail,
+                userRole: action.user[0].userRole,
                 error: null,
             });
         case DELETE_USER_SUCCESS:
@@ -87,6 +92,7 @@ export default function receipts(state = initialState, action) {
                 userRealName: '',
                 userId: '',
                 userEmail: '',
+                userRole: '',
                 error: null,
             });
         case ADD_RECEIPT_FAILURE:

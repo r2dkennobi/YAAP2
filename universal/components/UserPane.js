@@ -74,7 +74,8 @@ export default class UserPane extends Component {
                                     userRealName: this.state.userRealName,
                                     userId: this.state.userId,
                                     userEmail: this.state.userEmail,
-                                    password: this.state.password });
+                                    password: this.state.password,
+                                    userRole: '' });
         } else {
             this.props.loginUser({ userName: this.state.userName,
                                    password: this.state.password});

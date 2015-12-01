@@ -79,6 +79,7 @@ function createAdminUser(conn) {
     user.userName = 'admin';
     user.userRealName = 'admin';
     user.userEmail = 'admin';
+    user.userRole = 'Admin';
     user.password = hash.read();
     user.created = new Date();
     user.userId = uuid.v1();

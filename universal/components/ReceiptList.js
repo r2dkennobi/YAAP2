@@ -7,6 +7,7 @@ export default class ReceiptList extends Component {
     static propTypes = {
         receipts: PropTypes.array.isRequired,
         userId: PropTypes.string.isRequired,
+        userRole: PropTypes.string.isRequired,
         actions: PropTypes.object.isRequired
     };
 

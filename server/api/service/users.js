@@ -8,6 +8,16 @@ function connect() {
     return r.connect(config);
 }
 
+export function getUsers() {
+    return connect()
+    .then(conn => {
+        return r
+        .table('users')
+        .run(conn)
+        .then(cursor => cursor.toArray());
+    });
+}
+
 export function loginUser(userName, password) {
     var hash = crypto.createHmac('sha512', password);
     hash.setEncoding('base64');

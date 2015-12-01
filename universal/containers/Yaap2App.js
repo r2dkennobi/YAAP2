@@ -20,6 +20,7 @@ export default class Yaap2App extends Component {
         userRealName: React.PropTypes.string,
         userId: React.PropTypes.string,
         userEmail: React.PropTypes.string,
+        userRole: React.PropTypes.string,
         receipts: React.PropTypes.array,
         error: React.PropTypes.any,
     };
@@ -47,6 +48,7 @@ export default class Yaap2App extends Component {
         let receiptListEl = (this.props.userId.length !== 0) ?
                             <ReceiptList receipts={this.props.receipts}
                                          userId={this.props.userId}
+                                         userRole={this.props.userRole}
                                          actions={receiptActions} /> : null;
 
         return (
