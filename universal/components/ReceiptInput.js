@@ -19,6 +19,7 @@ export default class ReceiptInput extends Component {
             category: this.props.category || '',
             merchant: this.props.merchant || '',
             fileUrl: this.props.fileUrl || null,
+            reimFlag: this.props.reimFlag || '',
             amount: this.props.amount || 0.00
         };
     }
@@ -48,7 +49,11 @@ export default class ReceiptInput extends Component {
         }
 
         if (this.state.fileUrl === null) {
-            errors = [...errors, 'Empty receipt name!'];
+            errors = [...errors, 'Empty receipt name! '];
+        }
+
+        if (this.state.reimFlag.length === 0) {
+            errors = [...errors, 'Reimbursement request not set!'];
         }
 
         if (errors && errors.length > 0) {
@@ -60,12 +65,14 @@ export default class ReceiptInput extends Component {
                                  merchant: this.state.merchant,
                                  amount: this.state.amount,
                                  fileUrl: this.state.fileUrl,
+                                 reimFlag: this.state.reimFlag,
                                  userId: this.props.userId});
             this.setState({desc: '',
                            dateOfPurchase: null,
                            category: '',
                            merchant: '',
                            amount: 0.00,
+                           reimFlag: this.props.reimFlag,
                            fileUrl: null});
         }
     }
@@ -99,8 +106,13 @@ export default class ReceiptInput extends Component {
         this.setState({ amount: e.target.value });
     }
 
+    handleReimFlagChange(e) {
+        this.setState({ reimFlag: e.target.value });
+    }
+
     componentDidMount() {
         $(ReactDOM.findDOMNode(this.refs.categoryEl)).material_select();
+        $(ReactDOM.findDOMNode(this.refs.reimFlagEl)).material_select();
         $(ReactDOM.findDOMNode(this.refs.receiptImg)).materialbox();
         var comp = this;
         var el = this.refs.datepickerEl;
@@ -126,6 +138,7 @@ export default class ReceiptInput extends Component {
             "desc": `desc${compId}`,
             "date": `date${compId}`,
             "receiptImg": `receiptImg${compId}`,
+            "reimFlag": `reimFlag${compId}`,
             "merchant": `merchant${compId}`,
             "amount": `amount${compId}`
         }
@@ -171,11 +184,16 @@ export default class ReceiptInput extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="file-field input-field col s6">
-                        <div className="btn">
-                            <span>Upload Receipt</span>
-                            <input type="file" onChange={::this.handleFileUpload} />
-                        </div>
+                    <div className="input-field col s6">
+                        <select ref="reimFlagEl"
+                                id={ids["reimFlag"]}
+                                className="browser-default"
+                                value={this.state.reimFlag}
+                                onChange={::this.handleReimFlagChange}>
+                            <option value="" disabled>Ready for reimbursement?</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
                     </div>
                     <div className="input-field col s6">
                         <input type='number'
@@ -187,6 +205,12 @@ export default class ReceiptInput extends Component {
                     </div>
                 </div>
                 <div className="row">
+                    <div className="file-field input-field col s6">
+                        <div className="btn">
+                            <span>Upload Receipt</span>
+                            <input type="file" onChange={::this.handleFileUpload} />
+                        </div>
+                    </div>
                     <img ref="receiptEl"
                          className="materialboxed"
                          width="100"
