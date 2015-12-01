@@ -65,6 +65,7 @@ export default class ReceiptItem extends Component {
                         <p className='category'>Category: {receipt.category}</p>
                         <p className='merchant'>Merchant: {receipt.merchant}</p>
                         <p className='amount'>$ {receipt.amount}</p>
+                        <p className='reimFlag'>Reimbursement Requested?: {receipt.reimFlag}</p>
                         <p className='created'>Last Updated: {moment(modified).fromNow()}</p>
                     </div>
                     <div className='card-action'>
