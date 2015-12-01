@@ -51,3 +51,11 @@ export const CATEGORIES = {
     "Robomagellan": "Robomagellan",
     "Quadcopter": "Quadcopter"
 };
+
+export const ROLES = {
+    "Admin": "Admin",
+    "General": "General",
+    "MM Chair": "MM Chair",
+    "GP Chair": "GP Chair",
+    "Projects Manager": "Projects Manager"
+}
