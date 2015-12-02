@@ -23,7 +23,7 @@ export default class UserPane extends Component {
             userId: this.props.userId,
             userEmail: this.props.userEmail,
             password: '',
-            userCreateFlag: false
+            userCreateFlag: "Login"
         };
     }
 
@@ -52,12 +52,8 @@ export default class UserPane extends Component {
         });
     }
 
-    handleUserCreateFlag() {
-        if (this.state.userCreateFlag) {
-            this.setState({ userCreateFlag: false });
-        } else {
-            this.setState({ userCreateFlag: true });
-        }
+    handleUserCreateFlag(e) {
+        this.setState({ userCreateFlag: e.target.value });
     }
 
     handleSubmit(e) {
@@ -84,11 +80,16 @@ export default class UserPane extends Component {
             editing: false,
             userName: this.props.userName,
             userRealName: this.props.userRealName,
+            userCreateFlag: this.state.userCreateFlag,
             userId: this.props.userId,
             userEmail: this.props.userEmail,
             password: '',
-            userCreateFlag: false
+            userCreateFlag: "Login"
         });
+    }
+
+    componentDidMount() {
+        $(ReactDOM.findDOMNode(this.refs.userCreateEl)).material_select();
     }
 
     render() {
@@ -97,7 +98,7 @@ export default class UserPane extends Component {
 
         let element;
 
-        let userEmailEl = (this.state.userCreateFlag) ?
+        let userEmailEl = (this.state.userCreateFlag === "CreateUser") ?
                            <div className="input-field col s12">
                                <input type='text'
                                       id="emailEl"
@@ -105,7 +106,7 @@ export default class UserPane extends Component {
                                       onChange={::this.handleEmailChange}/>
                                <label className="active" htmlFor="emailEl">Email</label>
                            </div> : null;
-        let userRealNameEl = (this.state.userCreateFlag) ?
+        let userRealNameEl = (this.state.userCreateFlag === "CreateUser") ?
                              <div className="input-field col s12">
                                  <input type='text'
                                         id="userRealNameEl"
@@ -115,19 +116,18 @@ export default class UserPane extends Component {
                              </div> : null;
         let sliderEl = (this.state.editing) ? null :
                        <div className="input-field col s6">
-                           <div className="switch">
-                               <label>
-                                   Login
-                                   <input type="checkbox" onChange={::this.handleUserCreateFlag}/>
-                                   <span className="lever"></span>
-                                   Create User
-                               </label>
-                           </div>
+                            <select ref="userCreateEl"
+                                    className="browser-default"
+                                    value={this.state.userCreateFlag}
+                                    onChange={::this.handleUserCreateFlag}>
+                                <option value="Login" key="Login">Login</option>
+                                <option value="CreateUser" key="CreateUser">Create User</option>
+                            </select>
                        </div>;
 
         if (userId.length === 0 || this.state.editing) {
             element = (
-                <form method='GET' className='col s12'>
+                <form className='col s12'>
                     <div className="input-field col s12">
                         <input type='text'
                                id="usernameEl"

@@ -55,19 +55,21 @@ export default class Yaap2App extends Component {
         return (
             <div>
                 <Header/>
-                <div className="row">
-                    <div className="col s6">
-                        <UserPane userName={this.props.userName}
-                                  userRealName={this.props.userRealName}
-                                  userId={this.props.userId}
-                                  userEmail={this.props.userEmail}
-                                  {...userActions} />
+                <main>
+                    <div className="row">
+                        <div className="col s6">
+                            <UserPane userName={this.props.userName}
+                                      userRealName={this.props.userRealName}
+                                      userId={this.props.userId}
+                                      userEmail={this.props.userEmail}
+                                      {...userActions} />
+                        </div>
+                        <div className="col s6">
+                            {receiptInputEl}
+                        </div>
                     </div>
-                    <div className="col s6">
-                        {receiptInputEl}
-                    </div>
-                </div>
-                {receiptListEl}
+                    {receiptListEl}
+                </main>
             </div>
         );
     }
