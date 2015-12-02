@@ -72,7 +72,7 @@ export default class ReceiptInput extends Component {
                            category: '',
                            merchant: '',
                            amount: 0.00,
-                           reimFlag: this.props.reimFlag,
+                           reimFlag: '',
                            fileUrl: null});
         }
     }
@@ -113,7 +113,7 @@ export default class ReceiptInput extends Component {
     componentDidMount() {
         $(ReactDOM.findDOMNode(this.refs.categoryEl)).material_select();
         $(ReactDOM.findDOMNode(this.refs.reimFlagEl)).material_select();
-        $(ReactDOM.findDOMNode(this.refs.receiptImg)).materialbox();
+        $(ReactDOM.findDOMNode(this.refs.receiptImgEl)).materialbox();
         var comp = this;
         var el = this.refs.datepickerEl;
         $(ReactDOM.findDOMNode(el)).pickadate({
@@ -211,7 +211,7 @@ export default class ReceiptInput extends Component {
                             <input type="file" onChange={::this.handleFileUpload} />
                         </div>
                     </div>
-                    <img ref="receiptEl"
+                    <img ref="receiptImgEl"
                          className="materialboxed"
                          width="100"
                          height="auto"
