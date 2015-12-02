@@ -20,6 +20,23 @@ export default class ReceiptList extends Component {
         this.setState({ catFilter: e.target.value });
     }
 
+    roleFilter(rcpt) {
+        if (this.props.userRole === "Admin") {
+            return rcpt.userId !== this.props.userId;
+        } else if (this.props.userRole === "MM Chair") {
+            return rcpt.category === "Micromouse";
+        } else if (this.props.userRole === "GP Chair") {
+            return rcpt.category === "Grand PrIEEE";
+        } else if (this.props.userRole === "Projects Manager") {
+            return rcpt.category === "Micromouse"
+                   || rcpt.category === "Grand PrIEEE"
+                   || rcpt.category === "Robomagellan"
+                   || rcpt.category === "Quadcopter";
+        } else {
+            return false;
+        }
+    }
+
     receiptFilter(rcpt) {
         if (this.state.catFilter === '' || this.state.catFilter === 'All') {
             return true;
@@ -28,21 +45,33 @@ export default class ReceiptList extends Component {
         }
     }
 
+    subRoleSum(dict, rcpt) {
+        if (!(dict[rcpt.userRealName] in dict)) {
+            dict[rcpt.userRealName] = parseFloat(0.0);
+        }
+        dict[rcpt.userRealName] += parseFloat(rcpt.amount);
+        return dict;
+    }
+
     componentDidMount() {
         $(ReactDOM.findDOMNode(this.refs.categoryEl)).material_select();
     }
 
     render() {
-        const { receipts, userId, actions } = this.props;
+        const { receipts, userId, userRole, actions } = this.props;
         const myReceipts = receipts.filter(rcpt => rcpt.userId === userId);
+        const roleReceipt = receipts.filter(::this.roleFilter);
         let categories = Object.keys(CATEGORIES).sort();
         var makeOption = (n, k) => <option value={n} key={k}>{n}</option>;
+        var subCollectionList = roleReceipt.map((val, idx) => [val.userRealName, val.amount]);
+        var makeSubCollection = (val) => <li className="collection-item" key="test">{val[0]}: $ {val[1]}</li>;
         let filteredRcpt = myReceipts.filter(::this.receiptFilter);
 
-        let list;
+        let list, roleEl, roleRcptStat;
         let editable = true;
         let totalSum = myReceipts.reduce((x, receipt) => parseFloat(receipt.amount) + x, 0.0);
         let filteredSum = filteredRcpt.reduce((x, receipt) => parseFloat(receipt.amount) + x, 0.0);
+        let subRoleSum = roleReceipt.reduce(::this.subRoleSum, {});
 
         if (filteredRcpt.length > 0) {
             list = filteredRcpt.map((receipt, key) =>
@@ -62,8 +91,31 @@ export default class ReceiptList extends Component {
                     </div>;
         }
 
+        if (roleReceipt.length > 0) {
+            roleEl = roleReceipt.map((receipt, key) =>
+                <ReceiptItem key={key}
+                             receiptId={receipt.id}
+                             editable={editable}
+                             receipt={receipt}
+                             {...actions} />
+            );
+            roleEl = <div className='row'>
+                        <div className="col s12">
+                            {roleEl}
+                        </div>
+                     </div>
+            roleRcptStat = <ul className="collection with-header black-text">
+                               <li className="collection-header"><h5>User Stats</h5></li>
+                               {subCollectionList.map(makeSubCollection)}
+                           </ul>;
+        } else {
+            roleEl = null;
+            roleRcptStat = null;
+        }
+
         return (
             <div className='receiptStatus'>
+                {roleEl}
                 <div className='row'>
                     <div className="col s12">
                         <div className='card blue-grey darken-4'>
@@ -71,6 +123,7 @@ export default class ReceiptList extends Component {
                                 <span className="card-title">Stats</span>
                                 <p>Total Sum: $ {totalSum}</p>
                                 <p>Filtered Sum: $ {filteredSum}</p>
+                                {roleRcptStat} 
                                 <hr/>
                                 <span className="card-title">Filter</span>
                                 <select ref="categoryEl"

@@ -32,7 +32,7 @@ export default class ReceiptItem extends Component {
     }
 
     render() {
-        const { id, receipt, editReceipt, deleteReceipt } = this.props;
+        const { id, receipt, receiptId, editReceipt, deleteReceipt } = this.props;
 
         let element;
         let modified = (receipt.updated) ? receipt.updated : receipt.created;
@@ -46,8 +46,9 @@ export default class ReceiptItem extends Component {
                               fileUrl={receipt.fileUrl}
                               amount={receipt.amount}
                               userId={receipt.userId}
+                              reimFlag={receipt.reimFlag}
                               editing={this.state.editing}
-                              onSubmit={ (receipt) => this.handleSave(Object.assign({}, receipt, {id: receiptId})) } />
+                              onSubmit={ (receipt) => this.handleSave(Object.assign({}, receipt, {id: receiptId })) } />
             );
         } else {
             let del = (this.props.editable) ?
@@ -66,6 +67,7 @@ export default class ReceiptItem extends Component {
                         <p className='merchant'>Merchant: {receipt.merchant}</p>
                         <p className='amount'>$ {receipt.amount}</p>
                         <p className='reimFlag'>Reimbursement Requested?: {receipt.reimFlag}</p>
+                        <p className='realName'>Reimburse to: {receipt.userRealName}</p>
                         <p className='created'>Last Updated: {moment(modified).fromNow()}</p>
                     </div>
                     <div className='card-action'>

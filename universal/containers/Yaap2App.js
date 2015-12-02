@@ -44,6 +44,7 @@ export default class Yaap2App extends Component {
 
         let receiptInputEl = (this.props.userId.length !== 0) ?
                             <ReceiptInput onSubmit={this.props.addReceipt}
+                                          userRealName={this.props.userRealName}
                                           userId={this.props.userId} /> : null;
         let receiptListEl = (this.props.userId.length !== 0) ?
                             <ReceiptList receipts={this.props.receipts}

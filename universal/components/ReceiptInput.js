@@ -7,6 +7,7 @@ export default class ReceiptInput extends Component {
     static PropTypes = {
         onSubmit: PropTypes.func.isRequired,
         userId: PropTypes.string.isRequired,
+        userRealName: PropTypes.string.isRequired,
         editing: PropTypes.bool
     };
 
@@ -66,7 +67,8 @@ export default class ReceiptInput extends Component {
                                  amount: this.state.amount,
                                  fileUrl: this.state.fileUrl,
                                  reimFlag: this.state.reimFlag,
-                                 userId: this.props.userId});
+                                 userId: this.props.userId,
+                                 userRealName: this.props.userRealName});
             this.setState({desc: '',
                            dateOfPurchase: null,
                            category: '',
@@ -97,7 +99,6 @@ export default class ReceiptInput extends Component {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = function() {
-            console.log(reader.result);
             this.setState({ fileUrl: reader.result });
         }.bind(this);
     }
@@ -138,7 +139,6 @@ export default class ReceiptInput extends Component {
             "desc": `desc${compId}`,
             "date": `date${compId}`,
             "receiptImg": `receiptImg${compId}`,
-            "reimFlag": `reimFlag${compId}`,
             "merchant": `merchant${compId}`,
             "amount": `amount${compId}`
         }
@@ -180,19 +180,18 @@ export default class ReceiptInput extends Component {
                                id={ids["merchant"]}
                                value={this.state.merchant}
                                onChange={::this.handleMerchantChange}/>
-                        <label htmlFor={ids["merchant"]}>Merchant</label>
+                        <label className="active" htmlFor={ids["merchant"]}>Merchant</label>
                     </div>
                 </div>
                 <div className="row">
                     <div className="input-field col s6">
                         <select ref="reimFlagEl"
-                                id={ids["reimFlag"]}
                                 className="browser-default"
                                 value={this.state.reimFlag}
                                 onChange={::this.handleReimFlagChange}>
                             <option value="" disabled>Ready for reimbursement?</option>
-                            <option value="No">No</option>
-                            <option value="Yes">Yes</option>
+                            <option value="No" key="No">No</option>
+                            <option value="Yes" key="Yes">Yes</option>
                         </select>
                     </div>
                     <div className="input-field col s6">
