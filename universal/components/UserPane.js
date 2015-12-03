@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import ReactDOM from 'react-dom';
 import uuid from 'node-uuid';
 
 export default class UserPane extends Component {
@@ -65,7 +66,7 @@ export default class UserPane extends Component {
                                   userRealName: this.state.userRealName,
                                   userId: this.state.userId,
                                   userEmail: this.state.userEmail });
-        } else if (this.state.userCreateFlag) {
+        } else if (this.state.userCreateFlag === "CreateUser") {
             this.props.createUser({ userName: this.state.userName,
                                     userRealName: this.state.userRealName,
                                     userId: this.state.userId,
@@ -80,7 +81,6 @@ export default class UserPane extends Component {
             editing: false,
             userName: this.props.userName,
             userRealName: this.props.userRealName,
-            userCreateFlag: this.state.userCreateFlag,
             userId: this.props.userId,
             userEmail: this.props.userEmail,
             password: '',
